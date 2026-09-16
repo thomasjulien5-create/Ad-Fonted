@@ -8,15 +8,19 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div>
+      <div class="brand-wrap">
         <p class="eyebrow">Vetus Ordo · 1962</p>
         <h1>Ad Fontes</h1>
+        <div id="liturgicalBanner" class="liturgical-banner" aria-live="polite">
+          <span class="liturgical-swatch" aria-hidden="true"></span>
+          <span id="liturgicalColorName">Couleur liturgique du jour</span>
+        </div>
       </div>
       <button id="installBtn" class="ghost hidden">Installer</button>
     </header>
@@ -121,7 +125,7 @@
     </nav>
   </div>
 
-  <script src="meditations.js?v=5"></script>
-  <script src="app.js?v=5"></script>
+  <script src="meditations.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
