@@ -2,6 +2,7 @@ const API = 'https://categpt.chat/api/v1/feast';
 const API_ALT = 'https://categpt.chat/api/liturgical';
 let selected = new Date();
 let currentPayload = null;
+let currentMassCommentaryData = null;
 let deferredPrompt = null;
 
 const $ = s => document.querySelector(s);
@@ -60,6 +61,7 @@ async function fetchLiturgicalDay(iso){
 
 async function loadDay() {
   const iso=isoLocal(selected);
+  currentMassCommentaryData=null;
   $('#displayDate').textContent=formatDate(selected); $('#datePicker').value=iso;
   $('#feastName').textContent='Chargement…'; $('#feastMeta').textContent=''; $('#commemoration').textContent='';
   $('#massReadings').innerHTML='<div class="reading-card">Chargement des textes…</div>';
@@ -84,13 +86,60 @@ function renderLiturgy(vom) {
   $('#massDayTitle').textContent=vom.name||'';
   renderMass(vom.mass||[]);
 }
+
+function normalizeMassSections(data){
+  if(!data) return [];
+  if(Array.isArray(data.sections)) return data.sections;
+  const sections=[];
+  if(data.epistle) sections.push({label:'Épître',key:'epistle',...data.epistle});
+  if(data.reading) sections.push({label:'Lecture',key:'reading',...data.reading});
+  if(data.gospel) sections.push({label:'Évangile',key:'gospel',...data.gospel});
+  return sections;
+}
+
+function findCramponSection(reading){
+  const sections=normalizeMassSections(currentMassCommentaryData);
+  const key=String(reading.key||'').toLowerCase();
+  return sections.find(s=>{
+    const skey=String(s.key||'').toLowerCase();
+    if(skey && skey===key) return true;
+    if(s.ref && reading.ref && s.ref===reading.ref) return true;
+    const label=String(s.label||'').toLowerCase();
+    if(key==='epistle' && label.includes('épître')) return true;
+    if(key==='gospel' && label.includes('évangile')) return true;
+    if((key==='reading'||key==='lesson'||key.startsWith('lesson_')) && (label.includes('lecture')||label.includes('leçon'))) return true;
+    return false;
+  });
+}
+
+function readingTextHtml(value){
+  if(Array.isArray(value)) return value.map(p=>`<p>${stripUnsafe(p)}</p>`).join('');
+  return stripUnsafe(value||'');
+}
+
+function cramponSourceLine(section){
+  const source=section?.cramponSource;
+  if(!source) return '';
+  const label=source.label||'Bible Crampon 1923';
+  const url=(source.url||'').startsWith('http')?source.url:'';
+  return `<div class="reading-source"><strong>Traduction française :</strong> ${url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:label}</div>`;
+}
+
 function renderMass(items){
   const accepted=x=>['epistle','reading','gospel','lesson'].includes(x.key)||/^lesson_\d+$/.test(x.key||'');
   const readings=items.filter(accepted);
   $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>';
   bindLatinToggles();
 }
-function readingCard(x,i,prefix){ const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:''; return `<article class="reading-card"><div class="ref">${x.ref||''}</div><h3>${x.label||x.key}</h3><div class="liturgical-text">${stripUnsafe(x.text||'')}</div>${latin}</article>`; }
+
+function readingCard(x,i,prefix){
+  const section=findCramponSection(x);
+  const hasCrampon=Boolean(section?.cramponText);
+  const french=hasCrampon?readingTextHtml(section.cramponText):readingTextHtml(x.text||'');
+  const sourceLine=hasCrampon?cramponSourceLine(section):'<div class="reading-source provisional"><strong>Traduction française provisoire.</strong> La version Crampon de cette journée n’est pas encore archivée.</div>';
+  const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:'';
+  return `<article class="reading-card"><div class="ref">${x.ref||section?.ref||''}</div><h3>${x.label||section?.label||x.key}</h3><div class="liturgical-text">${french}</div>${sourceLine}${latin}</article>`;
+}
 function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
 
 function paraList(value){
@@ -129,15 +178,6 @@ async function renderMeditation(){
   $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
 }
 
-function normalizeMassSections(data){
-  if(Array.isArray(data.sections)) return data.sections;
-  const sections=[];
-  if(data.epistle) sections.push({label:'Épître',...data.epistle});
-  if(data.reading) sections.push({label:'Lecture',...data.reading});
-  if(data.gospel) sections.push({label:'Évangile',...data.gospel});
-  return sections;
-}
-
 function massSources(sources=[]){
   if(!sources.length) return '';
   return `<div class="mass-sources"><strong>Sources</strong><ul>${sources.map(s=>{
@@ -173,8 +213,15 @@ function paintMassCommentary(data){
 async function renderMassCommentary(iso){
   try {
     const r=await fetch(`./mass-commentaries/${iso}.json`,{cache:'no-store'});
-    if(r.ok){ paintMassCommentary(await r.json()); return; }
+    if(r.ok){
+      const data=await r.json();
+      currentMassCommentaryData=data;
+      paintMassCommentary(data);
+      if(currentPayload?.vom) renderMass(currentPayload.vom.mass||[]);
+      return;
+    }
   } catch(_) {}
+  currentMassCommentaryData=null;
   $('#massCommentary').innerHTML='<div class="reading-card commentary-pending"><strong>Commentaire non encore archivé.</strong><p>Les sources patristiques et thomistes de cette journée n’ont pas encore été vérifiées et intégrées.</p></div>';
 }
 
