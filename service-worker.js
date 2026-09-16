@@ -1,5 +1,5 @@
-const CACHE='ad-fontes-v5';
-const STATIC=['./','./index.html','./styles.css?v=5','./app.js?v=5','./meditations.js?v=5','./manifest.webmanifest','./icon.svg'];
+const CACHE='ad-fontes-v6';
+const STATIC=['./','./index.html','./styles.css?v=6','./app.js?v=6','./meditations.js?v=6','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
