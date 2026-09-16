@@ -6,6 +6,7 @@
   --green: #24483a;
   --green-2: #315e4c;
   --gold: #a98745;
+  --liturgical: #a98745;
   --line: #ded6c5;
   --shadow: 0 12px 32px rgba(44, 52, 43, .08);
   --radius: 22px;
@@ -26,13 +27,28 @@ button { color: inherit; }
 .app-shell { min-height: 100vh; padding-bottom: 96px; }
 .topbar {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between; gap:14px;
   padding: max(18px, env(safe-area-inset-top)) 20px 14px;
-  background: rgba(246,241,230,.92);
+  background: rgba(246,241,230,.94);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(222,214,197,.8);
 }
+.brand-wrap { min-width:0; }
 .topbar h1 { margin: 2px 0 0; font-size: 28px; letter-spacing: .04em; font-weight: 600; }
+.liturgical-banner {
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:8px; padding:5px 10px;
+  border:1px solid color-mix(in srgb, var(--liturgical) 78%, #000 22%);
+  border-radius:9px;
+  background:var(--liturgical);
+  color:#fffdf7;
+  box-shadow:0 3px 10px rgba(31,42,36,.08);
+  font-size:10px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+  transition:background-color .25s ease,border-color .25s ease,color .25s ease;
+}
+.liturgical-banner[data-color="blanc"] { color:#4b4337; border-color:#c8b991; }
+.liturgical-banner[data-color="rose"] { color:#2d2527; }
+.liturgical-swatch { width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.9; box-shadow:0 0 0 1px rgba(255,255,255,.22); }
 .eyebrow, .kicker { margin: 0; color: var(--gold); text-transform: uppercase; letter-spacing: .16em; font-size: 11px; font-weight: 700; }
 main { max-width: 760px; margin: 0 auto; padding: 18px 16px 34px; }
 .view { display: none; animation: fade .2s ease; }
@@ -66,6 +82,14 @@ main { max-width: 760px; margin: 0 auto; padding: 18px 16px 34px; }
 blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold); background:#fbf6e9; border-radius:0 14px 14px 0; font-style:italic; line-height:1.6; }
 .prose { line-height:1.72; font-size:16px; }
 .prose p { margin:0 0 14px; }
+.prose, .liturgical-text, blockquote, .practice, .mass-synthesis, .commentary-pending p {
+  text-align:justify;
+  text-justify:inter-word;
+  text-align-last:left;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  overflow-wrap:break-word;
+}
 .med-section { margin-top: 18px; }
 .med-section-title { margin: 0 0 12px; color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 700; }
 .source-section { background:#fbf8ef; border:1px solid #e7dfcf; border-radius:18px; padding:18px; }
@@ -126,4 +150,8 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   main { padding-left:24px; padding-right:24px; }
   .hero-card { padding:34px 32px; }
   .hero-card h2 { font-size:38px; }
+}
+@media (max-width:420px) {
+  .topbar { align-items:flex-start; }
+  .liturgical-banner { font-size:9px; letter-spacing:.06em; padding:5px 8px; }
 }
