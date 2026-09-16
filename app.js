@@ -17,7 +17,6 @@ async function loadDay() {
   $('#displayDate').textContent=formatDate(selected); $('#datePicker').value=iso;
   $('#feastName').textContent='Chargement…'; $('#feastMeta').textContent=''; $('#commemoration').textContent='';
   $('#massReadings').innerHTML='<div class="reading-card">Chargement des textes…</div>';
-  $('#complineContent').innerHTML='<div class="reading-card">Chargement de l’office…</div>';
   renderMeditation();
   try {
     const r=await fetch(`${API}?date=${iso}&locale=fr`,{headers:{'Accept':'application/json'}});
@@ -35,10 +34,10 @@ function renderLiturgy(vom) {
   $('#feastMeta').textContent=[vom.rank,vom.line].filter(Boolean).join(' · ');
   $('#commemoration').textContent=vom.commemorationLine||'';
   document.documentElement.style.setProperty('--liturgical',litColor(vom.color));
-  $('#massDayTitle').textContent=vom.name||''; renderMass(vom.mass||[]); renderCompline(vom.offices?.compline||[]);
+  $('#massDayTitle').textContent=vom.name||'';
+  renderMass(vom.mass||[]);
 }
 function renderMass(items){ const keys=new Set(['epistle','reading','gospel']); const readings=items.filter(x=>keys.has(x.key)); $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>'; bindLatinToggles(); }
-function renderCompline(items){ $('#complineContent').innerHTML=items.length?items.map((x,i)=>readingCard(x,i,'comp')).join(''):'<div class="error">Les Complies ne sont pas disponibles pour cette date.</div>'; bindLatinToggles(); }
 function readingCard(x,i,prefix){ const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:''; return `<article class="reading-card"><div class="ref">${x.ref||''}</div><h3>${x.label||x.key}</h3><div class="liturgical-text">${stripUnsafe(x.text||'')}</div>${latin}</article>`; }
 function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
 
@@ -78,7 +77,7 @@ async function renderMeditation(){
   $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
 }
 
-function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; $('#complineContent').innerHTML='<div class="error">Impossible de charger les Complies. Vérifie la connexion Internet.</div>'; }
+function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; }
 function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
 $('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
