@@ -41,7 +41,37 @@ function renderMass(items){ const keys=new Set(['epistle','reading','gospel']); 
 function renderCompline(items){ $('#complineContent').innerHTML=items.length?items.map((x,i)=>readingCard(x,i,'comp')).join(''):'<div class="error">Les Complies ne sont pas disponibles pour cette date.</div>'; bindLatinToggles(); }
 function readingCard(x,i,prefix){ const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:''; return `<article class="reading-card"><div class="ref">${x.ref||''}</div><h3>${x.label||x.key}</h3><div class="liturgical-text">${stripUnsafe(x.text||'')}</div>${latin}</article>`; }
 function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
-function renderMeditation(){ const med=window.MEDITATIONS[mdKey(selected)]; if(med){ $('#medTitle').textContent=med.title; $('#medQuote').textContent=med.quote; $('#medBody').innerHTML=med.body.map(p=>`<p>${p}</p>`).join('')+`<p class="small-note">${med.source}</p>`; $('#medPractice').innerHTML=`<strong>Résolution :</strong> ${med.practice}`; } else { $('#medTitle').textContent='Méditation à indexer'; $('#medQuote').textContent='La base complète des deux tomes n’est pas encore intégrée dans ce prototype.'; $('#medBody').innerHTML='<p>Les deux tomes sont reliés ci-dessous. L’édition complète devra indexer chaque entrée et tenir compte des périodes mobiles indiquées par le P. Mézard.</p><p class="small-note">Cette limitation concerne seulement la partie « La Moelle » ; le calendrier, la Messe et les Complies restent dynamiques.</p>'; $('#medPractice').innerHTML='<strong>Prototype :</strong> utiliser les liens des tomes pour consulter directement la source.'; } }
+
+function paraList(value){
+  if(!value) return '';
+  if(Array.isArray(value)) return value.map(p=>`<p>${p}</p>`).join('');
+  return `<p>${value}</p>`;
+}
+
+function renderMeditation(){
+  const med=window.MEDITATIONS[mdKey(selected)];
+  if(med){
+    $('#medTitle').textContent=med.title;
+    $('#medQuote').textContent=med.quote||'';
+    const sourceText = med.text ? paraList(med.text) : paraList(med.body);
+    const analysisText = med.analysis ? paraList(med.analysis) : paraList(med.body);
+    $('#medText').innerHTML=sourceText;
+    $('#medSource').textContent=med.source||'';
+    $('#medAnalysis').innerHTML=analysisText;
+    $('#medRefs').innerHTML=med.refs?.length ? `<strong>Références</strong><ul>${med.refs.map(r=>`<li>${r}</li>`).join('')}</ul>` : '';
+    $('#medRefs').style.display=med.refs?.length?'block':'none';
+    $('#medPractice').innerHTML=`<strong>Résolution :</strong> ${med.practice||''}`;
+  } else {
+    $('#medTitle').textContent='Méditation à intégrer';
+    $('#medQuote').textContent='Cette journée n’est pas encore archivée dans l’application.';
+    $('#medText').innerHTML='<p>Le texte n’est pas affiché tant qu’il n’a pas été vérifié dans l’édition source. Ad Fontes ne fabrique jamais une méditation manquante.</p>';
+    $('#medSource').textContent='';
+    $('#medAnalysis').innerHTML='<p>Le commentaire sera ajouté en même temps que le texte vérifié.</p>';
+    $('#medRefs').style.display='none';
+    $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
+  }
+}
+
 function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; $('#complineContent').innerHTML='<div class="error">Impossible de charger les Complies. Vérifie la connexion Internet.</div>'; }
 function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
