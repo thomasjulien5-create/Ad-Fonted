@@ -11,7 +11,37 @@ function isoLocal(date) { const y=date.getFullYear(); const m=String(date.getMon
 function mdKey(date) { return `${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }
 function formatDate(date) { return new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(date); }
 function stripUnsafe(html='') { const tpl=document.createElement('template'); tpl.innerHTML=html; tpl.content.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); tpl.content.querySelectorAll('*').forEach(el=>[...el.attributes].forEach(a=>{ if(a.name.startsWith('on')) el.removeAttribute(a.name); })); return tpl.innerHTML; }
-function litColor(color='') { const map={blanc:'#f7f0d8',rouge:'#8d3b36',vert:'#365d47',violet:'#5a4669',rose:'#b56f81',noir:'#272727'}; return map[color?.toLowerCase()] || '#a98745'; }
+
+function canonicalLitColor(color='') {
+  const raw=String(color||'').trim().toLowerCase();
+  const aliases={
+    blanc:'blanc',white:'blanc',albus:'blanc',
+    rouge:'rouge',red:'rouge',ruber:'rouge',
+    vert:'vert',green:'vert',viridis:'vert',
+    violet:'violet',purple:'violet',violaceus:'violet',
+    rose:'rose',pink:'rose',rosaceus:'rose',
+    noir:'noir',black:'noir',niger:'noir'
+  };
+  return aliases[raw]||'';
+}
+function litColor(color='') {
+  const map={blanc:'#f4ecd3',rouge:'#8d3b36',vert:'#365d47',violet:'#5a4669',rose:'#b56f81',noir:'#272727'};
+  return map[canonicalLitColor(color)] || '#a98745';
+}
+function litColorLabel(color='') {
+  const c=canonicalLitColor(color);
+  const labels={blanc:'Blanc',rouge:'Rouge',vert:'Vert',violet:'Violet',rose:'Rose',noir:'Noir'};
+  return labels[c]||'';
+}
+function setLiturgicalBanner(color, loading=false){
+  const value=litColor(color);
+  const canonical=canonicalLitColor(color);
+  document.documentElement.style.setProperty('--liturgical',value);
+  const label=$('#liturgicalColorName');
+  const banner=$('#liturgicalBanner');
+  if(label) label.textContent=loading?'Couleur liturgique…':canonical?`Couleur liturgique : ${litColorLabel(color)}`:'Couleur liturgique';
+  if(banner) banner.dataset.color=canonical||'neutral';
+}
 
 async function fetchLiturgicalDay(iso){
   const urls=[`${API}?date=${iso}&locale=fr`,`${API_ALT}/${iso}?locale=fr`];
@@ -34,6 +64,7 @@ async function loadDay() {
   $('#feastName').textContent='Chargement…'; $('#feastMeta').textContent=''; $('#commemoration').textContent='';
   $('#massReadings').innerHTML='<div class="reading-card">Chargement des textes…</div>';
   $('#massCommentary').innerHTML='<div class="reading-card">Chargement du commentaire…</div>';
+  setLiturgicalBanner('',true);
   renderMeditation();
   renderMassCommentary(iso);
   try {
@@ -49,7 +80,7 @@ function renderLiturgy(vom) {
   $('#feastName').textContent=vom.name||'Jour liturgique';
   $('#feastMeta').textContent=[vom.rank,vom.line].filter(Boolean).join(' · ');
   $('#commemoration').textContent=vom.commemorationLine||'';
-  document.documentElement.style.setProperty('--liturgical',litColor(vom.color));
+  setLiturgicalBanner(vom.color);
   $('#massDayTitle').textContent=vom.name||'';
   renderMass(vom.mass||[]);
 }
@@ -147,7 +178,12 @@ async function renderMassCommentary(iso){
   $('#massCommentary').innerHTML='<div class="reading-card commentary-pending"><strong>Commentaire non encore archivé.</strong><p>Les sources patristiques et thomistes de cette journée n’ont pas encore été vérifiées et intégrées.</p></div>';
 }
 
-function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Le commentaire sourcé, lorsqu’il est archivé, reste disponible ci-dessous.</div>'; }
+function renderError(message){
+  $('#feastName').textContent='Données indisponibles';
+  $('#feastMeta').textContent=message;
+  setLiturgicalBanner('');
+  $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Le commentaire sourcé, lorsqu’il est archivé, reste disponible ci-dessous.</div>';
+}
 function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
 $('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
