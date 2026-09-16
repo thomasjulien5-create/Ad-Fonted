@@ -1,0 +1,14 @@
+{
+  "name": "Ad Fontes — Méditation & Liturgie",
+  "short_name": "Ad Fontes",
+  "description": "La Moelle de saint Thomas d'Aquin, messe tridentine et Complies.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f1e6",
+  "theme_color": "#f6f1e6",
+  "lang": "fr",
+  "icons": [
+    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
