@@ -19,6 +19,8 @@ L'application appelle `https://categpt.chat/api/v1/feast?date=YYYY-MM-DD&locale=
 
 ## Publication
 
+Adresse prévue : `https://thomasjulien5-create.github.io/Ad-Fontes/`
+
 Le dépôt contient un workflow GitHub Pages dans `.github/workflows/deploy.yml` afin de publier automatiquement l'application après activation de GitHub Pages dans les réglages du dépôt.
 
 ## La Moelle
