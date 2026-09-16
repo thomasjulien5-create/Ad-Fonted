@@ -48,28 +48,34 @@ function paraList(value){
   return `<p>${value}</p>`;
 }
 
-function renderMeditation(){
-  const med=window.MEDITATIONS[mdKey(selected)];
-  if(med){
-    $('#medTitle').textContent=med.title;
-    $('#medQuote').textContent=med.quote||'';
-    const sourceText = med.text ? paraList(med.text) : paraList(med.body);
-    const analysisText = med.analysis ? paraList(med.analysis) : paraList(med.body);
-    $('#medText').innerHTML=sourceText;
-    $('#medSource').textContent=med.source||'';
-    $('#medAnalysis').innerHTML=analysisText;
-    $('#medRefs').innerHTML=med.refs?.length ? `<strong>Références</strong><ul>${med.refs.map(r=>`<li>${r}</li>`).join('')}</ul>` : '';
-    $('#medRefs').style.display=med.refs?.length?'block':'none';
-    $('#medPractice').innerHTML=`<strong>Résolution :</strong> ${med.practice||''}`;
-  } else {
-    $('#medTitle').textContent='Méditation à intégrer';
-    $('#medQuote').textContent='Cette journée n’est pas encore archivée dans l’application.';
-    $('#medText').innerHTML='<p>Le texte n’est pas affiché tant qu’il n’a pas été vérifié dans l’édition source. Ad Fontes ne fabrique jamais une méditation manquante.</p>';
-    $('#medSource').textContent='';
-    $('#medAnalysis').innerHTML='<p>Le commentaire sera ajouté en même temps que le texte vérifié.</p>';
-    $('#medRefs').style.display='none';
-    $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
-  }
+function paintMeditation(med){
+  $('#medTitle').textContent=med.title;
+  $('#medQuote').textContent=med.quote||'';
+  const sourceText = med.text ? paraList(med.text) : paraList(med.body);
+  const analysisText = med.analysis ? paraList(med.analysis) : paraList(med.body);
+  $('#medText').innerHTML=sourceText;
+  $('#medSource').textContent=med.source||'';
+  $('#medAnalysis').innerHTML=analysisText;
+  $('#medRefs').innerHTML=med.refs?.length ? `<strong>Références</strong><ul>${med.refs.map(r=>`<li>${r}</li>`).join('')}</ul>` : '';
+  $('#medRefs').style.display=med.refs?.length?'block':'none';
+  $('#medPractice').innerHTML=`<strong>Résolution :</strong> ${med.practice||''}`;
+}
+
+async function renderMeditation(){
+  const key=mdKey(selected);
+  try {
+    const r=await fetch(`./meditations/${key}.json`,{cache:'no-store'});
+    if(r.ok){ paintMeditation(await r.json()); return; }
+  } catch(_) {}
+  const fallback=window.MEDITATIONS?.[key];
+  if(fallback){ paintMeditation(fallback); return; }
+  $('#medTitle').textContent='Méditation à intégrer';
+  $('#medQuote').textContent='Cette journée n’est pas encore archivée dans l’application.';
+  $('#medText').innerHTML='<p>Le texte n’est pas affiché tant qu’il n’a pas été vérifié dans l’édition source. Ad Fontes ne fabrique jamais une méditation manquante.</p>';
+  $('#medSource').textContent='';
+  $('#medAnalysis').innerHTML='<p>Le commentaire sera ajouté en même temps que le texte vérifié.</p>';
+  $('#medRefs').style.display='none';
+  $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
 }
 
 function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; $('#complineContent').innerHTML='<div class="error">Impossible de charger les Complies. Vérifie la connexion Internet.</div>'; }
