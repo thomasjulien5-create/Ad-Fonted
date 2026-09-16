@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
@@ -82,7 +82,7 @@
           <button class="quick-card" data-go="mass">
             <span>✦</span>
             <strong>Messe</strong>
-            <small>Textes & commentaire</small>
+            <small>Textes Crampon & commentaire</small>
           </button>
         </div>
       </section>
@@ -92,6 +92,7 @@
           <p class="eyebrow">Propre de la messe</p>
           <h2>Textes bibliques</h2>
           <p class="muted" id="massDayTitle"></p>
+          <p class="small-note">Traduction française de référence : <strong>Bible du chanoine Augustin Crampon, édition révisée de 1923</strong>. Le latin liturgique reste accessible séparément lorsqu’il est fourni.</p>
         </div>
         <div id="massReadings" class="stack"></div>
 
@@ -110,10 +111,10 @@
         </div>
         <article class="card prose">
           <p><strong>Ad Fontes</strong> est centrée sur le <em>Vetus Ordo Missae</em> et la méditation thomiste. Le calendrier retenu est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
-          <p>Les données liturgiques de la messe sont chargées depuis l’API publique de CatéGPT, qui attribue les textes du Vetus Ordo au projet open source <strong>Divinum Officium</strong>.</p>
+          <p>La structure liturgique du jour est chargée depuis les données du Vetus Ordo. Pour l’Épître, l’Évangile et les autres lectures bibliques, la <strong>traduction française de référence est la Bible Crampon, édition révisée de 1923</strong>, vérifiée à partir de l’édition numérisée de Wikisource. Le texte latin liturgique est conservé séparément lorsqu’il est disponible.</p>
           <p>Chaque lecture biblique de la messe peut être suivie d’un <strong>commentaire spirituel sourcé</strong>, donnant la priorité à saint Thomas d’Aquin et aux Pères de l’Église, avec une place particulière pour saint Augustin et Bossuet, puis d’une résolution pratique.</p>
           <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> présente, pour chaque journée préparée, <strong>le texte intégral de la méditation</strong>, immédiatement suivi d’un <strong>commentaire thomiste substantiel</strong>, des références et d’une résolution pratique.</p>
-          <p class="small-note">Les méditations et commentaires de messe sont archivés dans l’application au fur et à mesure. Les temps mobiles de l’année liturgique sont traités selon le calendrier traditionnel et non comme de simples dates fixes.</p>
+          <p class="small-note">Les méditations, textes Crampon et commentaires de messe sont archivés dans l’application au fur et à mesure. Les temps mobiles de l’année liturgique sont traités selon le calendrier traditionnel et non comme de simples dates fixes.</p>
         </article>
       </section>
     </main>
@@ -125,7 +126,7 @@
     </nav>
   </div>
 
-  <script src="meditations.js?v=6"></script>
-  <script src="app.js?v=6"></script>
+  <script src="meditations.js?v=7"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>
