@@ -1,4 +1,5 @@
 const API = 'https://categpt.chat/api/v1/feast';
+const API_ALT = 'https://categpt.chat/api/liturgical';
 let selected = new Date();
 let currentPayload = null;
 let deferredPrompt = null;
@@ -12,6 +13,21 @@ function formatDate(date) { return new Intl.DateTimeFormat('fr-FR',{weekday:'lon
 function stripUnsafe(html='') { const tpl=document.createElement('template'); tpl.innerHTML=html; tpl.content.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); tpl.content.querySelectorAll('*').forEach(el=>[...el.attributes].forEach(a=>{ if(a.name.startsWith('on')) el.removeAttribute(a.name); })); return tpl.innerHTML; }
 function litColor(color='') { const map={blanc:'#f7f0d8',rouge:'#8d3b36',vert:'#365d47',violet:'#5a4669',rose:'#b56f81',noir:'#272727'}; return map[color?.toLowerCase()] || '#a98745'; }
 
+async function fetchLiturgicalDay(iso){
+  const urls=[`${API}?date=${iso}&locale=fr`,`${API_ALT}/${iso}?locale=fr`];
+  let lastError=null;
+  for(const url of urls){
+    try{
+      const r=await fetch(url,{headers:{'Accept':'application/json'},cache:'no-store'});
+      if(!r.ok) throw new Error(`HTTP ${r.status}`);
+      const data=await r.json();
+      if(data?.vom) return data;
+      throw new Error('Aucune donnée Vetus Ordo pour ce jour.');
+    }catch(err){ lastError=err; }
+  }
+  throw lastError||new Error('Données liturgiques indisponibles.');
+}
+
 async function loadDay() {
   const iso=isoLocal(selected);
   $('#displayDate').textContent=formatDate(selected); $('#datePicker').value=iso;
@@ -21,9 +37,7 @@ async function loadDay() {
   renderMeditation();
   renderMassCommentary(iso);
   try {
-    const r=await fetch(`${API}?date=${iso}&locale=fr`,{headers:{'Accept':'application/json'}});
-    if(!r.ok) throw new Error(`HTTP ${r.status}`);
-    const data=await r.json(); if(!data.vom) throw new Error('Aucune donnée Vetus Ordo pour ce jour.');
+    const data=await fetchLiturgicalDay(iso);
     currentPayload=data; renderLiturgy(data.vom); localStorage.setItem(`adfontes:${iso}`,JSON.stringify(data));
   } catch(err) {
     const cached=localStorage.getItem(`adfontes:${iso}`);
@@ -39,7 +53,12 @@ function renderLiturgy(vom) {
   $('#massDayTitle').textContent=vom.name||'';
   renderMass(vom.mass||[]);
 }
-function renderMass(items){ const keys=new Set(['epistle','reading','gospel']); const readings=items.filter(x=>keys.has(x.key)); $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>'; bindLatinToggles(); }
+function renderMass(items){
+  const accepted=x=>['epistle','reading','gospel','lesson'].includes(x.key)||/^lesson_\d+$/.test(x.key||'');
+  const readings=items.filter(accepted);
+  $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>';
+  bindLatinToggles();
+}
 function readingCard(x,i,prefix){ const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:''; return `<article class="reading-card"><div class="ref">${x.ref||''}</div><h3>${x.label||x.key}</h3><div class="liturgical-text">${stripUnsafe(x.text||'')}</div>${latin}</article>`; }
 function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
 
@@ -128,12 +147,12 @@ async function renderMassCommentary(iso){
   $('#massCommentary').innerHTML='<div class="reading-card commentary-pending"><strong>Commentaire non encore archivé.</strong><p>Les sources patristiques et thomistes de cette journée n’ont pas encore été vérifiées et intégrées.</p></div>';
 }
 
-function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; }
+function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Le commentaire sourcé, lorsqu’il est archivé, reste disponible ci-dessous.</div>'; }
 function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 $$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
 $('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
 $('#datePicker').onchange=e=>{ const [y,m,d]=e.target.value.split('-').map(Number); selected=new Date(y,m-1,d,12); loadDay(); };
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#installBtn').classList.remove('hidden'); });
 $('#installBtn').onclick=async()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; $('#installBtn').classList.add('hidden'); };
-if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{}));
 loadDay();
