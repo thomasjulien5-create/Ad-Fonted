@@ -17,7 +17,9 @@ async function loadDay() {
   $('#displayDate').textContent=formatDate(selected); $('#datePicker').value=iso;
   $('#feastName').textContent='Chargement…'; $('#feastMeta').textContent=''; $('#commemoration').textContent='';
   $('#massReadings').innerHTML='<div class="reading-card">Chargement des textes…</div>';
+  $('#massCommentary').innerHTML='<div class="reading-card">Chargement du commentaire…</div>';
   renderMeditation();
+  renderMassCommentary(iso);
   try {
     const r=await fetch(`${API}?date=${iso}&locale=fr`,{headers:{'Accept':'application/json'}});
     if(!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -75,6 +77,55 @@ async function renderMeditation(){
   $('#medAnalysis').innerHTML='<p>Le commentaire sera ajouté en même temps que le texte vérifié.</p>';
   $('#medRefs').style.display='none';
   $('#medPractice').innerHTML='<strong>Principe éditorial :</strong> priorité à la fidélité au texte et à la vérification des dates.';
+}
+
+function normalizeMassSections(data){
+  if(Array.isArray(data.sections)) return data.sections;
+  const sections=[];
+  if(data.epistle) sections.push({label:'Épître',...data.epistle});
+  if(data.reading) sections.push({label:'Lecture',...data.reading});
+  if(data.gospel) sections.push({label:'Évangile',...data.gospel});
+  return sections;
+}
+
+function massSources(sources=[]){
+  if(!sources.length) return '';
+  return `<div class="mass-sources"><strong>Sources</strong><ul>${sources.map(s=>{
+    if(typeof s==='string') return `<li>${s}</li>`;
+    const label=s.label||s.title||'Source';
+    const url=(s.url||'').startsWith('http')?s.url:'';
+    return `<li>${url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:label}</li>`;
+  }).join('')}</ul></div>`;
+}
+
+function massCommentaryCard(section){
+  return `<article class="mass-commentary-card">
+    <div class="ref">${section.ref||''}</div>
+    <p class="mass-author-label">${section.label||section.key||'Lecture'}</p>
+    <h3>${section.title||'Commentaire'}</h3>
+    <div class="prose">${paraList(section.commentary||section.analysis)}</div>
+    ${massSources(section.sources)}
+  </article>`;
+}
+
+function paintMassCommentary(data){
+  const sections=normalizeMassSections(data);
+  let html=sections.map(massCommentaryCard).join('');
+  if(data.synthesis){
+    html+=`<article class="mass-synthesis"><p class="med-section-title">Unité des lectures</p><div class="prose">${paraList(data.synthesis)}</div></article>`;
+  }
+  if(data.resolution){
+    html+=`<div class="practice mass-resolution"><strong>Résolution du jour :</strong> ${data.resolution}</div>`;
+  }
+  $('#massCommentary').innerHTML=html||'<div class="error">Le commentaire de cette journée n’est pas encore disponible.</div>';
+}
+
+async function renderMassCommentary(iso){
+  try {
+    const r=await fetch(`./mass-commentaries/${iso}.json`,{cache:'no-store'});
+    if(r.ok){ paintMassCommentary(await r.json()); return; }
+  } catch(_) {}
+  $('#massCommentary').innerHTML='<div class="reading-card commentary-pending"><strong>Commentaire non encore archivé.</strong><p>Les sources patristiques et thomistes de cette journée n’ont pas encore été vérifiées et intégrées.</p></div>';
 }
 
 function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; }
