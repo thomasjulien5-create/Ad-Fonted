@@ -1,7 +1,18 @@
 {
   "feast": "Saints Corneille et Cyprien, martyrs",
   "epistle": {
+    "key": "epistle",
     "ref": "Sagesse 3, 1-8",
+    "cramponText": [
+      "Les âmes des justes sont dans la main de Dieu, et le tourment ne les atteindra pas. Aux yeux des insensés, ils paraissent être morts, et leur sortie de ce monde semble un malheur, et leur départ du milieu de nous un anéantissement ; mais ils sont dans la paix.",
+      "Alors même que, devant les hommes, ils ont subi des châtiments, leur espérance est pleine d’immortalité. Après une légère peine, ils recevront une grande récompense ; car Dieu les a éprouvés, et les a trouvés dignes de lui.",
+      "Il les a essayés comme l’or dans la fournaise, et les a agréés comme un parfait holocauste. Au temps de leur récompense, ils brilleront ; comme des étincelles, ils courront à travers le chaume.",
+      "Ils jugeront les nations et domineront sur les peuples, et le Seigneur régnera sur eux à jamais."
+    ],
+    "cramponSource": {
+      "label": "Bible Crampon 1923 — Livre de la Sagesse, chapitre 3",
+      "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Sagesse"
+    },
     "title": "L’épreuve des justes et la vérité du martyre",
     "commentary": [
       "Le texte de la Sagesse commence par renverser le jugement spontané du monde : aux yeux des hommes, les justes semblent vaincus par la souffrance et la mort ; en réalité, « leurs âmes sont dans la main de Dieu ». Le contraste porte donc sur deux manières de juger : l’apparence sensible et la vérité ultime. La foi ne nie pas l’épreuve ; elle refuse simplement d’en faire le dernier mot.",
@@ -12,6 +23,7 @@
       "La lecture nous interdit donc deux contresens : le stoïcisme, qui prétendrait abolir la vulnérabilité, et le dolorisme, qui ferait de la souffrance un bien en soi. La perspective chrétienne est différente : le mal reste un mal, mais il peut être traversé par une fidélité qui le transforme en témoignage et en offrande."
     ],
     "sources": [
+      {"label": "Bible Crampon 1923, Sagesse 3, 1-8", "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Sagesse"},
       {"label": "Saint Thomas d’Aquin, Somme théologique, IIa-IIae, q. 124, spécialement a. 2-3, sur le martyre, la force et la charité", "url": "https://www.ccel.org/ccel/aquinas/summa.SS_Q124.html"},
       {"label": "Saint Augustin, Enarrationes in Psalmos, Ps. 148 — sur les justes placés dans la main de Dieu (référence transmise notamment par Cornelius a Lapide sur Sg 3)", "url": "https://sanctaclarapress.com/read/wisdom/3/commentary"},
       {"label": "Cornelius a Lapide, Commentaire sur Sagesse 3 — synthèse patristique sur les martyrs et l’immortalité", "url": "https://sanctaclarapress.com/read/wisdom/3/commentary"},
@@ -19,7 +31,18 @@
     ]
   },
   "gospel": {
+    "key": "gospel",
     "ref": "Luc 21, 9-19",
+    "cramponText": [
+      "Et quand vous entendrez parler de guerres et de séditions, ne soyez pas effrayés ; il faut que ces choses arrivent d’abord ; mais la fin ne viendra pas sitôt. Il leur dit alors : Une nation s’élèvera contre une nation, et un royaume contre un royaume. Il y aura de grands tremblements de terre, des pestes et des famines en divers lieux, et dans le ciel d’effrayantes apparitions et des signes extraordinaires.",
+      "Mais, avant tout cela, on mettra les mains sur vous, et l’on vous persécutera ; on vous traînera dans les synagogues et dans les prisons, on vous traduira devant les rois et les gouverneurs, à cause de mon nom. Cela vous arrivera, afin que vous me rendiez témoignage.",
+      "Mettez donc dans vos cœurs de ne point songer d’avance à votre défense ; car je vous donnerai moi-même une bouche et une sagesse à laquelle tous vos ennemis ne pourront ni répondre, ni résister.",
+      "Vous serez livrés même par vos parents, par vos frères, par vos proches et par vos amis, et ils feront mourir plusieurs d’entre vous. Vous serez en haine à tous à cause de mon nom. Cependant pas un cheveu de votre tête ne se perdra ; par votre constance, vous sauverez vos âmes."
+    ],
+    "cramponSource": {
+      "label": "Bible Crampon 1923 — Évangile selon saint Luc, chapitre 21",
+      "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Luc"
+    },
     "title": "La persécution transformée en témoignage",
     "commentary": [
       "Dans l’Évangile, le Christ ne promet nullement à ses disciples une histoire paisible. Il annonce au contraire guerres, troubles, persécutions, procès, trahisons et parfois la mort. Mais l’impératif qui commande tout le passage est : « ne soyez pas terrifiés ». Il ne s’agit pas d’une insensibilité artificielle ; il s’agit de refuser que la peur devienne le principe directeur de l’action.",
@@ -31,6 +54,7 @@
       "Pour aujourd’hui, l’application ne doit donc pas être recherchée d’abord dans l’idée d’une persécution spectaculaire. Toute situation dans laquelle la peur, le regard d’autrui ou l’hostilité risquent de nous faire renoncer à une vérité ou à un devoir constitue déjà un terrain d’exercice. Le martyr accomplit au degré héroïque ce que la vertu chrétienne demande quotidiennement : préférer le vrai bien à la sécurité immédiate."
     ],
     "sources": [
+      {"label": "Bible Crampon 1923, Luc 21, 9-19", "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Luc"},
       {"label": "Saint Thomas d’Aquin, Catena aurea sur Luc 21, 9-19 — avec saint Grégoire, saint Ambroise et les autres Pères cités", "url": "https://thedivinelamp.wordpress.com/2012/07/21/aquinas-catena-aurea-on-luke-219-19/"},
       {"label": "Saint Thomas d’Aquin, Somme théologique, IIa-IIae, q. 124, a. 1-5 — le martyre comme témoignage rendu à la vérité divine", "url": "https://www.ccel.org/ccel/aquinas/summa.SS_Q124.html"},
       {"label": "Bossuet, méditation sur la patience et le silence dans l’épreuve, Purification II", "url": "https://www.bibliotheque-monastique.ch/bibliotheque/bibliotheque/bossuet/volume011/018.htm"},
