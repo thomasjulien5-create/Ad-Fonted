@@ -1,0 +1,53 @@
+const API = 'https://categpt.chat/api/v1/feast';
+let selected = new Date();
+let currentPayload = null;
+let deferredPrompt = null;
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function isoLocal(date) { const y=date.getFullYear(); const m=String(date.getMonth()+1).padStart(2,'0'); const d=String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
+function mdKey(date) { return `${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }
+function formatDate(date) { return new Intl.DateTimeFormat('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(date); }
+function stripUnsafe(html='') { const tpl=document.createElement('template'); tpl.innerHTML=html; tpl.content.querySelectorAll('script,style,iframe,object,embed').forEach(n=>n.remove()); tpl.content.querySelectorAll('*').forEach(el=>[...el.attributes].forEach(a=>{ if(a.name.startsWith('on')) el.removeAttribute(a.name); })); return tpl.innerHTML; }
+function litColor(color='') { const map={blanc:'#f7f0d8',rouge:'#8d3b36',vert:'#365d47',violet:'#5a4669',rose:'#b56f81',noir:'#272727'}; return map[color?.toLowerCase()] || '#a98745'; }
+
+async function loadDay() {
+  const iso=isoLocal(selected);
+  $('#displayDate').textContent=formatDate(selected); $('#datePicker').value=iso;
+  $('#feastName').textContent='Chargement…'; $('#feastMeta').textContent=''; $('#commemoration').textContent='';
+  $('#massReadings').innerHTML='<div class="reading-card">Chargement des textes…</div>';
+  $('#complineContent').innerHTML='<div class="reading-card">Chargement de l’office…</div>';
+  renderMeditation();
+  try {
+    const r=await fetch(`${API}?date=${iso}&locale=fr`,{headers:{'Accept':'application/json'}});
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    const data=await r.json(); if(!data.vom) throw new Error('Aucune donnée Vetus Ordo pour ce jour.');
+    currentPayload=data; renderLiturgy(data.vom); localStorage.setItem(`adfontes:${iso}`,JSON.stringify(data));
+  } catch(err) {
+    const cached=localStorage.getItem(`adfontes:${iso}`);
+    if(cached){ currentPayload=JSON.parse(cached); renderLiturgy(currentPayload.vom); } else renderError(err.message);
+  }
+}
+
+function renderLiturgy(vom) {
+  $('#feastName').textContent=vom.name||'Jour liturgique';
+  $('#feastMeta').textContent=[vom.rank,vom.line].filter(Boolean).join(' · ');
+  $('#commemoration').textContent=vom.commemorationLine||'';
+  document.documentElement.style.setProperty('--liturgical',litColor(vom.color));
+  $('#massDayTitle').textContent=vom.name||''; renderMass(vom.mass||[]); renderCompline(vom.offices?.compline||[]);
+}
+function renderMass(items){ const keys=new Set(['epistle','reading','gospel']); const readings=items.filter(x=>keys.has(x.key)); $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>'; bindLatinToggles(); }
+function renderCompline(items){ $('#complineContent').innerHTML=items.length?items.map((x,i)=>readingCard(x,i,'comp')).join(''):'<div class="error">Les Complies ne sont pas disponibles pour cette date.</div>'; bindLatinToggles(); }
+function readingCard(x,i,prefix){ const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:''; return `<article class="reading-card"><div class="ref">${x.ref||''}</div><h3>${x.label||x.key}</h3><div class="liturgical-text">${stripUnsafe(x.text||'')}</div>${latin}</article>`; }
+function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
+function renderMeditation(){ const med=window.MEDITATIONS[mdKey(selected)]; if(med){ $('#medTitle').textContent=med.title; $('#medQuote').textContent=med.quote; $('#medBody').innerHTML=med.body.map(p=>`<p>${p}</p>`).join('')+`<p class="small-note">${med.source}</p>`; $('#medPractice').innerHTML=`<strong>Résolution :</strong> ${med.practice}`; } else { $('#medTitle').textContent='Méditation à indexer'; $('#medQuote').textContent='La base complète des deux tomes n’est pas encore intégrée dans ce prototype.'; $('#medBody').innerHTML='<p>Les deux tomes sont reliés ci-dessous. L’édition complète devra indexer chaque entrée et tenir compte des périodes mobiles indiquées par le P. Mézard.</p><p class="small-note">Cette limitation concerne seulement la partie « La Moelle » ; le calendrier, la Messe et les Complies restent dynamiques.</p>'; $('#medPractice').innerHTML='<strong>Prototype :</strong> utiliser les liens des tomes pour consulter directement la source.'; } }
+function renderError(message){ $('#feastName').textContent='Données indisponibles'; $('#feastMeta').textContent=message; $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Vérifie la connexion Internet.</div>'; $('#complineContent').innerHTML='<div class="error">Impossible de charger les Complies. Vérifie la connexion Internet.</div>'; }
+function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+$$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
+$('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
+$('#datePicker').onchange=e=>{ const [y,m,d]=e.target.value.split('-').map(Number); selected=new Date(y,m-1,d,12); loadDay(); };
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#installBtn').classList.remove('hidden'); });
+$('#installBtn').onclick=async()=>{ if(!deferredPrompt) return; deferredPrompt.prompt(); await deferredPrompt.userChoice; deferredPrompt=null; $('#installBtn').classList.add('hidden'); };
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));
+loadDay();
