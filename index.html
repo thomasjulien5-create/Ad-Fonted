@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#f6f1e6" />
-  <meta name="description" content="Méditations thomistes et liturgie romaine traditionnelle (Missel 1962)." />
+  <meta name="description" content="La Moelle de saint Thomas d’Aquin commentée et liturgie romaine traditionnelle (Missel 1962)." />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
@@ -47,11 +47,27 @@
               <p class="kicker">La Moelle de saint Thomas d’Aquin</p>
               <h3 id="medTitle">Méditation du jour</h3>
             </div>
-            <span class="badge">Thomiste</span>
+            <span class="badge">Texte & commentaire</span>
           </div>
+
           <blockquote id="medQuote"></blockquote>
-          <div id="medBody" class="prose"></div>
+
+          <section class="med-section source-section">
+            <p class="med-section-title">Texte intégral</p>
+            <div id="medText" class="prose source-text"></div>
+            <p id="medSource" class="small-note"></p>
+          </section>
+
+          <div class="med-divider" aria-hidden="true">✦</div>
+
+          <section class="med-section commentary-section">
+            <p class="med-section-title">Commentaire & analyse</p>
+            <div id="medAnalysis" class="prose"></div>
+          </section>
+
+          <section id="medRefs" class="references-box"></section>
           <div id="medPractice" class="practice"></div>
+
           <div class="actions">
             <a id="tome1Link" class="text-link" href="https://www.liberius.net/livres/La_moelle_de_saint_Thomas_d_Aquin_(tome_1)_000000942.pdf" target="_blank" rel="noopener">Tome I</a>
             <a id="tome2Link" class="text-link" href="https://www.liberius.net/livres/La_moelle_de_saint_Thomas_d_Aquin_(tome_2)_000000990.pdf" target="_blank" rel="noopener">Tome II</a>
@@ -96,10 +112,10 @@
           <h2>Une app volontairement traditionnelle</h2>
         </div>
         <article class="card prose">
-          <p><strong>Ad Fontes</strong> n’affiche volontairement que le <em>Vetus Ordo Missae</em> et l’office romain traditionnel. Le calendrier retenu dans ce prototype est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
+          <p><strong>Ad Fontes</strong> n’affiche volontairement que le <em>Vetus Ordo Missae</em> et l’office romain traditionnel. Le calendrier retenu est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
           <p>Les données liturgiques sont chargées depuis l’API publique de CatéGPT, qui attribue les textes du Vetus Ordo au projet open source <strong>Divinum Officium</strong>.</p>
-          <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> est prévue comme une base locale indexée. Le prototype contient une entrée de démonstration et les liens vers les deux tomes de 1930.</p>
-          <p class="small-note">Pour une édition complète, il faudra indexer toutes les méditations et traiter spécialement les périodes mobiles de l’année liturgique conformément à l’avis du P. Mézard.</p>
+          <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> présente désormais, pour chaque journée préparée, <strong>le texte intégral de la méditation</strong>, immédiatement suivi d’un <strong>commentaire thomiste substantiel</strong>, des références et d’une résolution pratique.</p>
+          <p class="small-note">Les méditations quotidiennes sont archivées dans l’application au fur et à mesure. Les temps mobiles de l’année liturgique sont traités selon les indications du P. Mézard et non comme de simples dates fixes.</p>
         </article>
       </section>
     </main>
