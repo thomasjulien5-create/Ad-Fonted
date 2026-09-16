@@ -80,11 +80,6 @@
             <strong>Messe</strong>
             <small>Épître & Évangile</small>
           </button>
-          <button class="quick-card" data-go="compline">
-            <span>☾</span>
-            <strong>Complies</strong>
-            <small>Office du soir</small>
-          </button>
         </div>
       </section>
 
@@ -97,24 +92,15 @@
         <div id="massReadings" class="stack"></div>
       </section>
 
-      <section id="view-compline" class="view" aria-labelledby="tab-compline">
-        <div class="section-title">
-          <p class="eyebrow">Breviarium Romanum</p>
-          <h2>Complies</h2>
-          <p class="muted">Office traditionnel selon les rubriques de 1960.</p>
-        </div>
-        <div id="complineContent" class="stack"></div>
-      </section>
-
       <section id="view-about" class="view" aria-labelledby="tab-about">
         <div class="section-title">
           <p class="eyebrow">À propos</p>
           <h2>Une app volontairement traditionnelle</h2>
         </div>
         <article class="card prose">
-          <p><strong>Ad Fontes</strong> n’affiche volontairement que le <em>Vetus Ordo Missae</em> et l’office romain traditionnel. Le calendrier retenu est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
-          <p>Les données liturgiques sont chargées depuis l’API publique de CatéGPT, qui attribue les textes du Vetus Ordo au projet open source <strong>Divinum Officium</strong>.</p>
-          <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> présente désormais, pour chaque journée préparée, <strong>le texte intégral de la méditation</strong>, immédiatement suivi d’un <strong>commentaire thomiste substantiel</strong>, des références et d’une résolution pratique.</p>
+          <p><strong>Ad Fontes</strong> est centrée sur le <em>Vetus Ordo Missae</em> et la méditation thomiste. Le calendrier retenu est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
+          <p>Les données liturgiques de la messe sont chargées depuis l’API publique de CatéGPT, qui attribue les textes du Vetus Ordo au projet open source <strong>Divinum Officium</strong>.</p>
+          <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> présente, pour chaque journée préparée, <strong>le texte intégral de la méditation</strong>, immédiatement suivi d’un <strong>commentaire thomiste substantiel</strong>, des références et d’une résolution pratique.</p>
           <p class="small-note">Les méditations quotidiennes sont archivées dans l’application au fur et à mesure. Les temps mobiles de l’année liturgique sont traités selon les indications du P. Mézard et non comme de simples dates fixes.</p>
         </article>
       </section>
@@ -123,7 +109,6 @@
     <nav class="bottom-nav" aria-label="Navigation principale">
       <button id="tab-today" class="nav-btn active" data-view="today"><span>✠</span><small>Aujourd’hui</small></button>
       <button id="tab-mass" class="nav-btn" data-view="mass"><span>☩</span><small>Messe</small></button>
-      <button id="tab-compline" class="nav-btn" data-view="compline"><span>☾</span><small>Complies</small></button>
       <button id="tab-about" class="nav-btn" data-view="about"><span>ℹ</span><small>À propos</small></button>
     </nav>
   </div>
