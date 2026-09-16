@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f1e6" />
+  <meta name="description" content="Méditations thomistes et liturgie romaine traditionnelle (Missel 1962)." />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Ad Fontes — Méditation & Liturgie</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Vetus Ordo · 1962</p>
+        <h1>Ad Fontes</h1>
+      </div>
+      <button id="installBtn" class="ghost hidden">Installer</button>
+    </header>
+
+    <main>
+      <section id="view-today" class="view active" aria-labelledby="tab-today">
+        <div class="date-row">
+          <button id="prevDay" class="round" aria-label="Jour précédent">‹</button>
+          <div class="date-center">
+            <p id="displayDate" class="date-label"></p>
+            <input id="datePicker" type="date" aria-label="Choisir une date" />
+          </div>
+          <button id="nextDay" class="round" aria-label="Jour suivant">›</button>
+        </div>
+
+        <article class="hero-card">
+          <div class="ornament">✠</div>
+          <p class="kicker">Jour liturgique</p>
+          <h2 id="feastName">Chargement…</h2>
+          <p id="feastMeta" class="muted"></p>
+          <p id="commemoration" class="commemoration"></p>
+          <div class="source-line">Calendrier : Vetus Ordo, rubriques 1960 / missel 1962</div>
+        </article>
+
+        <article class="card meditation-card">
+          <div class="card-head">
+            <div>
+              <p class="kicker">La Moelle de saint Thomas d’Aquin</p>
+              <h3 id="medTitle">Méditation du jour</h3>
+            </div>
+            <span class="badge">Thomiste</span>
+          </div>
+          <blockquote id="medQuote"></blockquote>
+          <div id="medBody" class="prose"></div>
+          <div id="medPractice" class="practice"></div>
+          <div class="actions">
+            <a id="tome1Link" class="text-link" href="https://www.liberius.net/livres/La_moelle_de_saint_Thomas_d_Aquin_(tome_1)_000000942.pdf" target="_blank" rel="noopener">Tome I</a>
+            <a id="tome2Link" class="text-link" href="https://www.liberius.net/livres/La_moelle_de_saint_Thomas_d_Aquin_(tome_2)_000000990.pdf" target="_blank" rel="noopener">Tome II</a>
+          </div>
+        </article>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-go="mass">
+            <span>✦</span>
+            <strong>Messe</strong>
+            <small>Épître & Évangile</small>
+          </button>
+          <button class="quick-card" data-go="compline">
+            <span>☾</span>
+            <strong>Complies</strong>
+            <small>Office du soir</small>
+          </button>
+        </div>
+      </section>
+
+      <section id="view-mass" class="view" aria-labelledby="tab-mass">
+        <div class="section-title">
+          <p class="eyebrow">Propre de la messe</p>
+          <h2>Épître & Évangile</h2>
+          <p class="muted" id="massDayTitle"></p>
+        </div>
+        <div id="massReadings" class="stack"></div>
+      </section>
+
+      <section id="view-compline" class="view" aria-labelledby="tab-compline">
+        <div class="section-title">
+          <p class="eyebrow">Breviarium Romanum</p>
+          <h2>Complies</h2>
+          <p class="muted">Office traditionnel selon les rubriques de 1960.</p>
+        </div>
+        <div id="complineContent" class="stack"></div>
+      </section>
+
+      <section id="view-about" class="view" aria-labelledby="tab-about">
+        <div class="section-title">
+          <p class="eyebrow">À propos</p>
+          <h2>Une app volontairement traditionnelle</h2>
+        </div>
+        <article class="card prose">
+          <p><strong>Ad Fontes</strong> n’affiche volontairement que le <em>Vetus Ordo Missae</em> et l’office romain traditionnel. Le calendrier retenu dans ce prototype est celui du missel de 1962, correspondant aux rubriques de 1960.</p>
+          <p>Les données liturgiques sont chargées depuis l’API publique de CatéGPT, qui attribue les textes du Vetus Ordo au projet open source <strong>Divinum Officium</strong>.</p>
+          <p>La partie <em>La Moelle de saint Thomas d’Aquin</em> est prévue comme une base locale indexée. Le prototype contient une entrée de démonstration et les liens vers les deux tomes de 1930.</p>
+          <p class="small-note">Pour une édition complète, il faudra indexer toutes les méditations et traiter spécialement les périodes mobiles de l’année liturgique conformément à l’avis du P. Mézard.</p>
+        </article>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Navigation principale">
+      <button id="tab-today" class="nav-btn active" data-view="today"><span>✠</span><small>Aujourd’hui</small></button>
+      <button id="tab-mass" class="nav-btn" data-view="mass"><span>☩</span><small>Messe</small></button>
+      <button id="tab-compline" class="nav-btn" data-view="compline"><span>☾</span><small>Complies</small></button>
+      <button id="tab-about" class="nav-btn" data-view="about"><span>ℹ</span><small>À propos</small></button>
+    </nav>
+  </div>
+
+  <script src="meditations.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
