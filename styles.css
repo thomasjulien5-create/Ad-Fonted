@@ -66,6 +66,17 @@ main { max-width: 760px; margin: 0 auto; padding: 18px 16px 34px; }
 blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold); background:#fbf6e9; border-radius:0 14px 14px 0; font-style:italic; line-height:1.6; }
 .prose { line-height:1.72; font-size:16px; }
 .prose p { margin:0 0 14px; }
+.med-section { margin-top: 18px; }
+.med-section-title { margin: 0 0 12px; color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 700; }
+.source-section { background:#fbf8ef; border:1px solid #e7dfcf; border-radius:18px; padding:18px; }
+.source-text { font-size:16px; line-height:1.78; }
+.source-text p:first-child::first-letter { float:left; font-size:42px; line-height:.9; margin:5px 7px 0 0; color:var(--gold); }
+.med-divider { text-align:center; color:var(--gold); margin:22px 0 4px; letter-spacing:.25em; }
+.commentary-section { padding-top:4px; }
+.references-box { margin-top:18px; padding:16px 18px; border:1px solid var(--line); background:#f7f3e9; border-radius:15px; line-height:1.55; }
+.references-box strong { color:var(--green); }
+.references-box ul { margin:9px 0 0 20px; padding:0; }
+.references-box li { margin:6px 0; }
 .practice { margin-top:18px; padding:16px; background:#eef4ef; border-radius:15px; line-height:1.55; }
 .practice strong { color:var(--green); }
 .actions { display:flex; gap:18px; margin-top:16px; }
