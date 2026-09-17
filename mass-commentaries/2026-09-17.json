@@ -1,0 +1,64 @@
+{
+  "feast": "Férie du XVIe dimanche après la Pentecôte — mémoire de l’Impression des Stigmates de saint François",
+  "epistle": {
+    "key": "epistle",
+    "label": "Épître",
+    "ref": "Éphésiens 3, 13-21",
+    "cramponText": [
+      "C’est pourquoi je vous prie de ne pas vous laisser décourager à cause des afflictions que j’endure pour vous : elles sont votre gloire.",
+      "À cause de cela, je fléchis le genou devant le Père, de qui tire son nom toute famille dans les cieux et sur la terre, afin qu’il vous donne, selon les trésors de sa gloire, d’être puissamment fortifiés par son Esprit en vue de l’homme intérieur, et que le Christ habite dans vos cœurs par la foi, de sorte que, étant enracinés et fondés dans la charité, vous deveniez capables de comprendre avec tous les saints quelle est la largeur et la longueur, la profondeur et la hauteur, même de connaître l’amour du Christ, qui surpasse toute connaissance, en sorte que vous soyez remplis de toute la plénitude de Dieu.",
+      "À celui qui peut faire, par la puissance qui agit en nous, infiniment au delà de ce que nous demandons et concevons, à Lui soit la gloire dans l’Église et en Jésus-Christ, dans tous les âges, aux siècles des siècles ! Amen !"
+    ],
+    "cramponSource": {
+      "label": "Bible Crampon 1923 — Épître aux Éphésiens, chapitre 3",
+      "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/%C3%89ph%C3%A9siens"
+    },
+    "title": "Fortifiés dans l’homme intérieur, enracinés dans la charité",
+    "commentary": [
+      "Saint Paul part de ses propres tribulations pour conduire les Éphésiens non à la compassion pour lui, mais à la contemplation de l’œuvre de Dieu en eux. Saint Thomas, dans son commentaire direct de ce chapitre, voit dans la prière de l’Apôtre un ordre spirituel très précis : l’homme intérieur doit d’abord être fortifié par l’Esprit ; le Christ habite ensuite dans le cœur par la foi ; cette présence établit l’âme dans la charité ; enfin, de cette foi informée par la charité naît une connaissance plus profonde du mystère du Christ. La connaissance chrétienne n’est donc pas une pure accumulation de notions : elle suppose une intelligence rendue stable par la grâce et une volonté unifiée par l’amour.",
+      "L’expression « enracinés et fondés dans la charité » réunit deux images, organique et architecturale. La racine fait vivre ; le fondement fait tenir. Thomas reprend précisément Éphésiens 3, 17 lorsqu’il explique que la charité est la forme des vertus : non qu’elle abolisse leurs objets propres, mais parce qu’elle ordonne leurs actes à la fin ultime, Dieu aimé pour lui-même. Une prudence, une force ou une justice qui ne seraient pas ordonnées par la charité pourraient posséder une certaine rectitude humaine ; elles ne constitueraient pas encore la perfection surnaturelle de la vie chrétienne.",
+      "La largeur, la longueur, la hauteur et la profondeur sont interprétées par Thomas comme les dimensions d’un mystère que l’intelligence ne peut épuiser. Il souligne que l’amour du Christ « surpasse toute connaissance » non parce qu’il serait irrationnel, mais parce que la réalité divine excède la capacité naturelle de l’esprit créé. Il y a donc ici une doctrine très thomiste du rapport entre connaissance et amour : la foi donne une connaissance véritable, la charité unit réellement à Dieu, et cette union ouvre l’intelligence à une sagesse que le seul raisonnement abstrait ne produit pas.",
+      "Cette dynamique correspond à la doctrine de la grâce chez Thomas. La grâce ne détruit pas la nature ; elle la guérit, la fortifie et l’élève. L’« homme intérieur » n’est pas un second homme séparé du corps, mais la personne humaine considérée selon ses puissances spirituelles, surtout l’intelligence et la volonté, rendues capables par la grâce d’actes proportionnés à une fin surnaturelle. Le texte liturgique demande donc moins une émotion religieuse qu’une transformation réelle du principe intérieur de nos actes.",
+      "Enfin, Paul conclut en attribuant tout à la puissance divine qui agit en nous. Cela exclut à la fois le quiétisme et l’autosuffisance. Dieu agit réellement comme cause première de la grâce, et l’homme agit réellement comme cause seconde libre. Chez Thomas, l’action divine ne concurrence pas la liberté créée : elle la fonde et la porte. Plus l’homme est mû par Dieu selon la grâce, plus son agir propre atteint sa perfection. La vie spirituelle est ainsi coopération : recevoir la force de l’Esprit pour poser librement des actes de foi et de charité.",
+      "La mémoire des stigmates de saint François donne aujourd’hui une illustration saisissante de cette épître : la conformité extérieure au Crucifié n’a de sens qu’à partir d’une transformation intérieure par la charité. Le vrai centre du mystère est l’amour du Christ qui saisit, transforme et rend l’homme capable de porter dans sa vie la forme de la Croix."
+    ],
+    "sources": [
+      {"label": "Bible Crampon 1923, Éphésiens 3, 13-21", "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/%C3%89ph%C3%A9siens"},
+      {"label": "Saint Thomas d’Aquin, Super Epistolam ad Ephesios, cap. 3, lect. 4-5 — commentaire direct de la prière de Paul", "url": "https://isidore.co/aquinas/english/Eph3.htm"},
+      {"label": "Saint Thomas d’Aquin, Somme théologique, IIa-IIae, q. 23, a. 8 — la charité forme des vertus ; citation d’Ep 3,17", "url": "https://www.logicmuseum.com/wiki/Authors/Thomas_Aquinas/Summa_Theologiae/Part_IIb/Q23"},
+      {"label": "Saint Thomas d’Aquin, Somme théologique, Ia-IIae, q. 62, a. 4 — ordre des vertus théologales et charité comme racine", "url": "https://www.logicmuseum.com/wiki/Authors/Thomas_Aquinas/Summa_Theologiae/Part_IIa/Q62"}
+    ]
+  },
+  "gospel": {
+    "key": "gospel",
+    "label": "Évangile",
+    "ref": "Luc 14, 1-11",
+    "cramponText": [
+      "Un jour de sabbat, Jésus étant entré dans la maison d’un des principaux Pharisiens pour y prendre son repas, ceux-ci l’observaient. Et voici qu’un homme hydropique se trouvait devant lui. Jésus, prenant la parole, dit aux Docteurs de la Loi et aux Pharisiens : « Est-il permis de faire une guérison le jour du sabbat ? » Et ils gardèrent le silence. Lui, prenant cet homme par la main, le guérit et le renvoya.",
+      "Puis, s’adressant à eux, il dit : « Qui de vous, si son âne ou son bœuf tombe dans un puits, ne l’en retire aussitôt le jour du sabbat ? » Et à cela ils ne surent que lui répondre.",
+      "Ensuite, ayant remarqué l’empressement des conviés à choisir les premières places, Jésus leur dit cette parabole : « Quand tu seras invité par quelqu’un à des noces, ne prends pas la première place, de peur qu’il n’y ait un homme plus considéré que toi, et que celui qui vous aura invités l’un et l’autre ne vienne te dire : Cède-lui la place ; et qu’alors tu ne commences avec confusion à occuper la dernière place.",
+      "Mais lorsque tu seras invité, va te mettre à la dernière place ; de cette façon, quand viendra celui qui t’a invité, il te dira : Mon ami, monte plus haut. Alors ce sera pour toi un honneur devant les autres convives. Car quiconque s’élève sera abaissé, et quiconque s’abaisse sera élevé. »"
+    ],
+    "cramponSource": {
+      "label": "Bible Crampon 1923 — Évangile selon saint Luc, chapitre 14",
+      "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Luc"
+    },
+    "title": "La miséricorde du sabbat et la vérité de l’humilité",
+    "commentary": [
+      "L’Évangile unit deux scènes qui pourraient sembler distinctes : la guérison de l’hydropique et la leçon sur les premières places. La Catena aurea compilée par saint Thomas transmet justement la lecture de saint Ambroise : après la guérison de l’homme gonflé par l’excès des humeurs vient la guérison de l’âme gonflée par l’orgueil. Le passage possède ainsi une profonde unité : le Christ délivre d’abord un corps alourdi, puis il attaque dans les convives une inflation plus dangereuse, celle de l’amour désordonné de sa propre excellence.",
+      "La controverse sur le sabbat révèle également la hiérarchie des biens. Les Pharisiens savent sauver un animal en danger le jour du repos, mais hésitent devant la guérison d’un homme. Le Christ ne détruit pas la Loi ; il en restaure la finalité. Pour Thomas, toute loi est ordonnée au bien commun, et la loi divine à la communion de l’homme avec Dieu. Une observance qui contredirait la miséricorde voulue par le législateur trahirait donc l’esprit même de la loi. La guérison manifeste que le sabbat est au service du salut, non le salut au service d’une lecture desséchée du sabbat.",
+      "Vient alors l’humilité. La doctrine propre de Thomas en IIa-IIae, q. 161 permet d’éviter deux contresens. L’humilité n’est ni mépris de soi ni négation mensongère de ses dons. Elle est une vertu qui modère l’appétit lorsqu’il tend désordonnément vers l’excellence. Elle est gouvernée par la vérité : reconnaître un don reçu de Dieu n’est pas orgueil ; se l’attribuer comme si l’on en était la source ultime, ou chercher une prééminence qui ne nous revient pas, voilà le désordre.",
+      "La Catena aurea donne à la parabole une portée ecclésiale et eschatologique. Bède explique que celui qui entre au banquet de l’Église ne doit pas se préférer aux autres à cause de ses mérites. Le Maître seul connaît exactement la place de chacun. Le mouvement « descendre pour être élevé » n’est donc pas une technique subtile pour obtenir des honneurs : ce serait encore de l’orgueil déguisé. Il s’agit de remettre à Dieu le jugement de notre grandeur et de choisir ici-bas la vérité de la dépendance créaturelle.",
+      "Cette humilité est parfaitement compatible avec la magnanimité. Thomas refuse d’opposer le désir des grandes choses et l’humilité : la magnanimité pousse à accomplir de grandes œuvres selon les dons reçus ; l’humilité empêche de les revendiquer comme un droit fondé sur soi. Le saint peut donc viser très haut — jusqu’à la perfection de la charité — précisément parce qu’il sait que toute élévation véritable vient de Dieu.",
+      "La mémoire des stigmates de saint François éclaire encore cette logique. François n’est pas élevé parce qu’il cherche une singularité spectaculaire ; la tradition liturgique le présente comme transformé en ressemblance du Crucifié par l’ardeur de l’amour. La dernière place évangélique devient alors la place même du Christ qui s’est abaissé. L’exaltation chrétienne n’est pas conquise contre les autres : elle est reçue du Père dans la mesure où l’on consent à être configuré au Fils humble et crucifié."
+    ],
+    "sources": [
+      {"label": "Bible Crampon 1923, Luc 14, 1-11", "url": "https://fr.wikisource.org/wiki/Bible_Crampon_1923/Luc"},
+      {"label": "Saint Thomas d’Aquin, Catena aurea sur Luc 14, 1-11 — Ambroise, Bède, Cyrille, Théophylacte", "url": "https://www.ecatholic2000.com/catena/untitled-75.shtml"},
+      {"label": "Saint Thomas d’Aquin, Somme théologique, IIa-IIae, q. 161 — de l’humilité", "url": "https://www.newadvent.org/summa/3161.htm"},
+      {"label": "Ordo 1962 du 17 septembre 2026 — férie et mémoire des Stigmates de saint François", "url": "https://1962ordo.today/day/feria-ii-after-dom-xvii-pent-2-2-2-2-2-2/"}
+    ]
+  },
+  "synthesis": "L’Épître et l’Évangile décrivent un même mouvement surnaturel : Dieu fortifie l’homme intérieur afin que le Christ habite en lui par la foi et la charité ; cette habitation détruit progressivement l’enflure de l’orgueil et rend possible l’humilité vraie. Être « rempli de toute la plénitude de Dieu » ne conduit pas à se grandir soi-même, mais à recevoir toute grandeur comme un don. La charité enracine ; l’humilité creuse la terre où cette racine peut descendre. La mémoire des stigmates de saint François montre jusqu’où peut aller cette logique : devenir conforme au Christ, non par l’affirmation de soi, mais par l’amour qui consent à recevoir de Dieu sa forme.",
+  "resolution": "Aujourd’hui, choisis volontairement une « dernière place » concrète : rends un service utile sans le signaler, renonce à faire valoir un mérite ou laisse à un autre un honneur que tu aurais aimé recevoir. Puis demande au Saint-Esprit de fortifier en toi l’homme intérieur afin que cet acte ne soit pas une posture, mais un exercice réel de charité et d’humilité."
+}
