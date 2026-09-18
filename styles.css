@@ -64,18 +64,27 @@ main { max-width: 760px; margin: 0 auto; padding: 18px 16px 34px; }
 .hidden { display:none !important; }
 .hero-card {
   position:relative; overflow:hidden;
-  padding: 28px 24px;
-  border-radius: 28px;
-  color:#fdf8ec;
-  background: linear-gradient(140deg, #1d3b31, #2d5a49 78%, #3d6b59);
-  box-shadow: var(--shadow);
+  padding:20px 22px 18px;
+  border-radius:22px;
+  color:#fffdf7;
+  background:linear-gradient(140deg, color-mix(in srgb, var(--liturgical) 90%, #000 10%), var(--liturgical));
+  box-shadow:var(--shadow);
+  transition:background .25s ease,color .25s ease;
 }
+.hero-card[data-color="blanc"] { color:#342f27; border:1px solid #d8cba8; }
+.hero-card[data-color="blanc"] .muted,
+.hero-card[data-color="blanc"] .source-line { color:rgba(52,47,39,.72); }
+.hero-card[data-color="blanc"] .source-line { border-top-color:rgba(52,47,39,.15); }
+.hero-card[data-color="blanc"] .commemoration { color:#765c26; }
+.hero-card[data-color="rose"] { color:#2d2527; }
+.hero-card[data-color="rose"] .muted,
+.hero-card[data-color="rose"] .source-line { color:rgba(45,37,39,.72); }
 .hero-card::after { content:''; position:absolute; right:-30px; top:-40px; width:170px; height:170px; border:1px solid rgba(255,255,255,.1); border-radius:50%; }
 .ornament { position:absolute; top:18px; right:22px; opacity:.5; font-size:26px; }
-.hero-card h2 { margin:8px 0 9px; font-size:31px; line-height:1.12; font-weight:500; }
+.hero-card h2 { margin:7px 0 7px; font-size:28px; line-height:1.12; font-weight:500; }
 .hero-card .muted { color:rgba(255,255,255,.78); }
 .commemoration { margin: 10px 0 0; font-style:italic; color:#f0d8a4; }
-.source-line { margin-top:18px; padding-top:14px; border-top:1px solid rgba(255,255,255,.14); font-size:11px; color:rgba(255,255,255,.6); }
+.source-line { margin-top:12px; padding-top:10px; border-top:1px solid rgba(255,255,255,.14); font-size:11px; color:rgba(255,255,255,.6); }
 .card { background:rgba(255,253,247,.94); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; margin-top:16px; }
 .card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
 .card h3 { margin:6px 0 0; font-size:25px; font-weight:500; line-height:1.2; }
@@ -149,8 +158,8 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
 .error { padding:18px; border:1px solid #dec7bd; background:#fff5f1; border-radius:15px; color:#7a3b2c; line-height:1.55; }
 @media (min-width:680px) {
   main { padding-left:24px; padding-right:24px; }
-  .hero-card { padding:34px 32px; }
-  .hero-card h2 { font-size:38px; }
+  .hero-card { padding:24px 28px 21px; }
+  .hero-card h2 { font-size:34px; }
 }
 @media (max-width:420px) {
   .topbar { align-items:flex-start; }
@@ -159,3 +168,31 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
 
 .liturgical-color-kicker { color:var(--liturgical); transition:color .25s ease; }
 @media (max-width:420px){ .brand-banner{border-radius:10px;} .topbar{padding-left:10px;padding-right:10px;} }
+
+.hero-card p, .hero-card .source-line { text-align:justify; text-justify:inter-word; hyphens:auto; }
+.liturgical-color-kicker { color:inherit; opacity:.9; }
+.today-mass { position:relative; margin-top:18px; }
+.compact-title { margin-bottom:12px; padding-right:48px; }
+.compact-title h2 { font-size:27px; }
+.section-icon.bible-mini {
+  position:absolute; right:8px; top:2px; width:42px; height:42px;
+  display:grid; place-items:center; font-size:25px;
+  background:#fffaf0; border:1px solid #dfd3bb; border-radius:12px; box-shadow:0 4px 12px rgba(44,52,43,.06);
+}
+.thomas-heading { display:flex; align-items:center; gap:14px; margin-top:26px; padding-top:20px; }
+.thomas-mini {
+  width:58px; height:58px; flex:0 0 58px; object-fit:cover; object-position:50% 18%;
+  border-radius:50%; border:2px solid #c6a660; box-shadow:0 4px 12px rgba(44,52,43,.12); background:#eee4cf;
+}
+.thomas-heading h2 { margin-top:3px; font-size:25px; }
+.thomas-heading .muted { margin:4px 0 0; font-size:13px; line-height:1.45; text-align:justify; }
+.reading-card, .mass-commentary-card { padding:18px; }
+.reading-card .liturgical-text, .mass-commentary-card .prose { text-align:justify; text-justify:inter-word; hyphens:auto; }
+@media (max-width:420px){
+  .hero-card { padding:17px 17px 15px; border-radius:18px; }
+  .hero-card h2 { font-size:25px; padding-right:24px; }
+  .source-line { margin-top:10px; padding-top:9px; }
+  .compact-title h2 { font-size:24px; }
+  .thomas-mini { width:52px; height:52px; flex-basis:52px; }
+  .thomas-heading h2 { font-size:22px; }
+}
