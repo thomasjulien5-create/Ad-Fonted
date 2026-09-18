@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=12" />
+  <link rel="stylesheet" href="styles.css?v=13" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
@@ -41,12 +41,13 @@
         </article>
 
         <section class="today-mass">
-          <div class="section-title compact-title">
-            <p class="eyebrow">Propre de la messe</p>
-            <h2>Textes de la messe du jour</h2>
-            <p class="small-note">Bible Crampon 1923 · Épître, Évangile et, lorsqu’ils sont disponibles, hymne ou séquence propre à la fête.</p>
+          <div class="section-heading-with-mini">
+            <div class="section-mini bible-mini" aria-hidden="true">📖</div>
+            <div class="section-title compact-title">
+              <p class="eyebrow">Propre de la messe</p>
+              <h2>Textes du jour</h2>
+            </div>
           </div>
-          <div class="section-icon bible-mini" aria-hidden="true">📖</div>
           <div id="massReadings" class="stack"></div>
 
           <div class="mass-commentary-heading thomas-heading">
@@ -54,7 +55,6 @@
             <div>
               <p class="eyebrow">Lecture thomiste</p>
               <h2>Commentaire de saint Thomas d’Aquin</h2>
-              <p class="muted">Commentaire puisé prioritairement dans le corpus authentique de saint Thomas.</p>
             </div>
           </div>
           <div id="massCommentary" class="stack"></div>
@@ -63,10 +63,12 @@
       </section>
 
       <section id="view-mass" class="view" aria-labelledby="tab-mass">
-        <div class="section-title">
-          <p class="eyebrow">Méditation quotidienne</p>
-          <h2>La Moelle de saint Thomas d’Aquin</h2>
-          <p class="muted">Texte intégral de la méditation du jour, suivi d’un commentaire puisé dans le corpus thomasien.</p>
+        <div class="section-heading-with-mini meditation-heading">
+          <img class="thomas-mini meditation-thomas-mini" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/San%20tommaso%20d%27aquino%20con%20la%20summa%2C%20angelico%20san%20marco.jpg?width=160" alt="Saint Thomas d’Aquin, détail d’une fresque de Fra Angelico" loading="lazy" />
+          <div class="section-title">
+            <p class="eyebrow">Méditation quotidienne</p>
+            <h2>La Moelle de saint Thomas d’Aquin</h2>
+          </div>
         </div>
         <article class="card meditation-card">
           <div class="card-head">
@@ -134,7 +136,7 @@
     </nav>
   </div>
 
-  <script src="meditations.js?v=12"></script>
-  <script src="app.js?v=12"></script>
+  <script src="meditations.js?v=13"></script>
+  <script src="app.js?v=13"></script>
 </body>
 </html>
