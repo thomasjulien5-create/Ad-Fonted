@@ -132,7 +132,7 @@ function cramponSourceLine(section){
   if(!source) return '';
   const label=source.label||'Bible Crampon 1923';
   const url=(source.url||'').startsWith('http')?source.url:'';
-  return `<div class="reading-source"><strong>Traduction française :</strong> ${url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:label}</div>`;
+  return `<div class="reading-source">Source : ${url?`<a href="${url}" target="_blank" rel="noopener">${label}</a>`:label}</div>`;
 }
 
 function renderMass(items){
@@ -146,7 +146,7 @@ function readingCard(x,i,prefix){
   const section=findCramponSection(x);
   const hasCrampon=Boolean(section?.cramponText);
   const french=hasCrampon?readingTextHtml(section.cramponText):readingTextHtml(x.text||'');
-  const sourceLine=hasCrampon?cramponSourceLine(section):'<div class="reading-source provisional"><strong>Traduction française provisoire.</strong> La version Crampon de cette journée n’est pas encore archivée.</div>';
+  const sourceLine=hasCrampon?cramponSourceLine(section):'<div class="reading-source provisional">Source : texte liturgique du jour · traduction française provisoire.</div>';
   const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:'';
   return `<article class="reading-card"><div class="ref">${x.ref||section?.ref||''}</div><h3>${x.label||section?.label||x.key}</h3><div class="liturgical-text">${french}</div>${sourceLine}${latin}</article>`;
 }
@@ -190,7 +190,7 @@ async function renderMeditation(){
 
 function massSources(sources=[]){
   if(!sources.length) return '';
-  return `<div class="mass-sources"><strong>Sources</strong><ul>${sources.map(s=>{
+  return `<div class="mass-sources">Sources<ul>${sources.map(s=>{
     if(typeof s==='string') return `<li>${s}</li>`;
     const label=s.label||s.title||'Source';
     const url=(s.url||'').startsWith('http')?s.url:'';
