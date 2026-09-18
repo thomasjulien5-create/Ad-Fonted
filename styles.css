@@ -228,3 +228,39 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .reading-card, .mass-commentary-card { padding:19px 18px 21px; }
   .meditation-card { padding:19px 18px 22px; }
 }
+
+/* v14 — homogénéité stricte des deux rubriques principales */
+.meditation-heading {
+  margin:18px 4px 14px;
+  align-items:center;
+}
+.meditation-heading .section-title {
+  margin:0;
+  padding:0;
+}
+.meditation-heading .section-title h2,
+.today-mass .section-heading-with-mini .section-title h2 {
+  margin:5px 0 4px;
+  font-size:27px;
+  font-weight:500;
+  line-height:1.18;
+}
+.meditation-heading .thomas-mini,
+.today-mass .section-mini.bible-mini {
+  width:56px;
+  height:56px;
+  flex:0 0 56px;
+  border-radius:14px;
+  border:1px solid #dfd3bb;
+  box-shadow:0 4px 12px rgba(44,52,43,.07);
+  background:#fffaf0;
+}
+.meditation-heading .thomas-mini { object-fit:cover; object-position:50% 18%; }
+@media (max-width:420px){
+  .meditation-heading .thomas-mini,
+  .today-mass .section-mini.bible-mini {
+    width:50px; height:50px; flex-basis:50px; border-radius:13px;
+  }
+  .meditation-heading .section-title h2,
+  .today-mass .section-heading-with-mini .section-title h2 { font-size:24px; }
+}
