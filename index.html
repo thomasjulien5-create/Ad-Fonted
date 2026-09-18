@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=8" />
+  <link rel="stylesheet" href="styles.css?v=11" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
@@ -31,14 +31,34 @@
           <button id="nextDay" class="round" aria-label="Jour suivant">›</button>
         </div>
 
-        <article class="hero-card">
+        <article id="liturgicalHero" class="hero-card">
           <div class="ornament">✠</div>
-          <p id="liturgicalColorName" class="kicker liturgical-color-kicker" aria-live="polite">Couleur liturgique</p>
+          <p id="liturgicalColorName" class="kicker liturgical-color-kicker" aria-live="polite">Sens de la couleur liturgique</p>
           <h2 id="feastName">Chargement…</h2>
           <p id="feastMeta" class="muted"></p>
           <p id="commemoration" class="commemoration"></p>
           <div class="source-line">Calendrier : Vetus Ordo, rubriques 1960 / missel 1962 · Source : Divinum Officium via CatéGPT</div>
         </article>
+
+        <section class="today-mass">
+          <div class="section-title compact-title">
+            <p class="eyebrow">Propre de la messe</p>
+            <h2>Textes de la messe du jour</h2>
+            <p class="small-note">Bible Crampon 1923 · Épître, Évangile et, lorsqu’ils sont disponibles, hymne ou séquence propre à la fête.</p>
+          </div>
+          <div class="section-icon bible-mini" aria-hidden="true">📖</div>
+          <div id="massReadings" class="stack"></div>
+
+          <div class="mass-commentary-heading thomas-heading">
+            <img class="thomas-mini" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/San%20tommaso%20d%27aquino%20con%20la%20summa%2C%20angelico%20san%20marco.jpg?width=160" alt="Saint Thomas d’Aquin, détail d’une fresque de Fra Angelico" loading="lazy" />
+            <div>
+              <p class="eyebrow">Lecture thomiste</p>
+              <h2>Commentaire de saint Thomas d’Aquin</h2>
+              <p class="muted">Commentaire puisé prioritairement dans le corpus authentique de saint Thomas.</p>
+            </div>
+          </div>
+          <div id="massCommentary" class="stack"></div>
+        </section>
 
         <article class="card meditation-card">
           <div class="card-head">
@@ -73,30 +93,17 @@
           </div>
         </article>
 
-        <div class="quick-grid">
-          <button class="quick-card" data-go="mass">
-            <span>✦</span>
-            <strong>Messe</strong>
-            <small>Textes Crampon & commentaire</small>
-          </button>
-        </div>
       </section>
 
       <section id="view-mass" class="view" aria-labelledby="tab-mass">
         <div class="section-title">
-          <p class="eyebrow">Propre de la messe</p>
-          <h2>Textes bibliques</h2>
-          <p class="muted" id="massDayTitle"></p>
-          <p class="small-note">Traduction française de référence : <strong>Bible du chanoine Augustin Crampon, édition révisée de 1923</strong>. Le latin liturgique reste accessible séparément lorsqu’il est fourni.</p>
+          <p class="eyebrow">Méditation</p>
+          <h2>La Moelle de saint Thomas d’Aquin</h2>
+          <p class="muted">La méditation quotidienne reste accessible ici, séparée du propre de la messe placé désormais sur la page principale.</p>
         </div>
-        <div id="massReadings" class="stack"></div>
-
-        <div class="mass-commentary-heading">
-          <p class="eyebrow">Lecture spirituelle</p>
-          <h2>Commentaire des textes</h2>
-          <p class="muted">Saint Thomas d’Aquin, Pères de l’Église, saint Augustin et Bossuet — avec les sources.</p>
-        </div>
-        <div id="massCommentary" class="stack"></div>
+        <article class="card prose">
+          <p>La méditation complète du jour se trouve également sur la page « Aujourd’hui ». Cette rubrique sera progressivement dédiée à l’approfondissement thomiste.</p>
+        </article>
       </section>
 
       <section id="view-about" class="view" aria-labelledby="tab-about">
@@ -124,12 +131,12 @@
 
     <nav class="bottom-nav" aria-label="Navigation principale">
       <button id="tab-today" class="nav-btn active" data-view="today"><span>✠</span><small>Aujourd’hui</small></button>
-      <button id="tab-mass" class="nav-btn" data-view="mass"><span>☩</span><small>Messe</small></button>
+      <button id="tab-mass" class="nav-btn" data-view="mass"><span>✦</span><small>Méditation</small></button>
       <button id="tab-about" class="nav-btn" data-view="about"><span>ℹ</span><small>À propos</small></button>
     </nav>
   </div>
 
-  <script src="meditations.js?v=8"></script>
-  <script src="app.js?v=8"></script>
+  <script src="meditations.js?v=11"></script>
+  <script src="app.js?v=11"></script>
 </body>
 </html>
