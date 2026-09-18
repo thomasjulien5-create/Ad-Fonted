@@ -264,3 +264,22 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .meditation-heading .section-title h2,
   .today-mass .section-heading-with-mini .section-title h2 { font-size:24px; }
 }
+
+/* v15 — références et sources : taille homogène */
+.reading-source,
+.mass-sources,
+#medSource,
+.references-box,
+.references-box li,
+.mass-sources li,
+.ref {
+  font-size:11px;
+  line-height:1.55;
+}
+.references-box {
+  color:var(--muted);
+}
+.references-box strong,
+.mass-sources strong {
+  font-size:11px;
+}
