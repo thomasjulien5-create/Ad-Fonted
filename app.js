@@ -39,9 +39,7 @@ function setLiturgicalBanner(color, loading=false){
   const canonical=canonicalLitColor(color);
   document.documentElement.style.setProperty('--liturgical',value);
   const label=$('#liturgicalColorName');
-  const banner=$('#liturgicalBanner');
   if(label) label.textContent=loading?'Couleur liturgique…':canonical?`Couleur liturgique : ${litColorLabel(color)}`:'Couleur liturgique';
-  if(banner) banner.dataset.color=canonical||'neutral';
 }
 
 async function fetchLiturgicalDay(iso){
