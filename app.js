@@ -34,12 +34,25 @@ function litColorLabel(color='') {
   const labels={blanc:'Blanc',rouge:'Rouge',vert:'Vert',violet:'Violet',rose:'Rose',noir:'Noir'};
   return labels[c]||'';
 }
+function litColorMeaning(color='') {
+  const meanings={
+    blanc:'Lumière · joie · pureté · gloire',
+    rouge:'Feu de l’Esprit · charité · sang du martyre',
+    vert:'Espérance · croissance · persévérance',
+    violet:'Pénitence · conversion · attente',
+    rose:'Joie au cœur de l’attente et de la pénitence',
+    noir:'Deuil · mort · prière pour les défunts'
+  };
+  return meanings[canonicalLitColor(color)]||'';
+}
 function setLiturgicalBanner(color, loading=false){
   const value=litColor(color);
   const canonical=canonicalLitColor(color);
   document.documentElement.style.setProperty('--liturgical',value);
+  const hero=$('#liturgicalHero');
+  if(hero) hero.dataset.color=canonical||'';
   const label=$('#liturgicalColorName');
-  if(label) label.textContent=loading?'Couleur liturgique…':canonical?`Couleur liturgique : ${litColorLabel(color)}`:'Couleur liturgique';
+  if(label) label.textContent=loading?'Sens de la couleur liturgique…':canonical?litColorMeaning(color):'Sens de la couleur liturgique';
 }
 
 async function fetchLiturgicalDay(iso){
@@ -81,7 +94,6 @@ function renderLiturgy(vom) {
   $('#feastMeta').textContent=[vom.rank,vom.line].filter(Boolean).join(' · ');
   $('#commemoration').textContent=vom.commemorationLine||'';
   setLiturgicalBanner(vom.color);
-  $('#massDayTitle').textContent=vom.name||'';
   renderMass(vom.mass||[]);
 }
 
@@ -124,7 +136,7 @@ function cramponSourceLine(section){
 }
 
 function renderMass(items){
-  const accepted=x=>['epistle','reading','gospel','lesson'].includes(x.key)||/^lesson_\d+$/.test(x.key||'');
+  const accepted=x=>['epistle','reading','gospel','lesson','sequence','hymn','sequentia','hymnus'].includes(x.key)||/^lesson_\d+$/.test(x.key||'');
   const readings=items.filter(accepted);
   $('#massReadings').innerHTML=readings.length?readings.map((x,i)=>readingCard(x,i,'mass')).join(''):'<div class="error">Les lectures de la messe ne sont pas disponibles dans la réponse du jour.</div>';
   bindLatinToggles();
