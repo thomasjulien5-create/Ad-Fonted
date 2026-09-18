@@ -196,3 +196,35 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .thomas-mini { width:52px; height:52px; flex-basis:52px; }
   .thomas-heading h2 { font-size:22px; }
 }
+
+/* v13 — lecture plus aérée et miniatures alignées à gauche */
+.section-heading-with-mini { display:flex; align-items:center; gap:14px; margin:18px 4px 14px; }
+.section-heading-with-mini .section-title { margin:0; padding:0; flex:1; }
+.section-mini.bible-mini {
+  position:static; width:56px; height:56px; flex:0 0 56px;
+  display:grid; place-items:center; font-size:30px;
+  background:#fffaf0; border:1px solid #dfd3bb; border-radius:14px;
+  box-shadow:0 4px 12px rgba(44,52,43,.07);
+}
+.meditation-heading { margin-top:10px; margin-bottom:8px; }
+.meditation-thomas-mini { order:0; }
+.liturgical-text, .prose { font-size:17px; line-height:1.9; }
+.liturgical-text p, .prose p { margin:0 0 1.15em; }
+.reading-card, .mass-commentary-card { padding:22px 22px 24px; }
+.reading-card h3, .mass-commentary-card h3 { margin-bottom:14px; }
+.stack { gap:18px; }
+.reading-source, .mass-sources, #medSource {
+  margin-top:18px; padding-top:10px; border-top:1px solid rgba(222,214,197,.75);
+  font-size:11px; line-height:1.5; color:var(--muted);
+}
+.mass-sources { font-size:11px; }
+.mass-sources ul { margin-top:6px; }
+.source-text { font-size:17px; line-height:1.95; }
+.meditation-card { padding:24px; }
+@media (max-width:420px){
+  .section-heading-with-mini { gap:11px; }
+  .section-mini.bible-mini { width:50px; height:50px; flex-basis:50px; font-size:27px; }
+  .liturgical-text, .prose, .source-text { font-size:16.5px; line-height:1.88; }
+  .reading-card, .mass-commentary-card { padding:19px 18px 21px; }
+  .meditation-card { padding:19px 18px 22px; }
+}
