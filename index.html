@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
@@ -60,6 +60,14 @@
           <div id="massCommentary" class="stack"></div>
         </section>
 
+      </section>
+
+      <section id="view-mass" class="view" aria-labelledby="tab-mass">
+        <div class="section-title">
+          <p class="eyebrow">Méditation quotidienne</p>
+          <h2>La Moelle de saint Thomas d’Aquin</h2>
+          <p class="muted">Texte intégral de la méditation du jour, suivi d’un commentaire puisé dans le corpus thomasien.</p>
+        </div>
         <article class="card meditation-card">
           <div class="card-head">
             <div>
@@ -93,17 +101,7 @@
           </div>
         </article>
 
-      </section>
 
-      <section id="view-mass" class="view" aria-labelledby="tab-mass">
-        <div class="section-title">
-          <p class="eyebrow">Méditation</p>
-          <h2>La Moelle de saint Thomas d’Aquin</h2>
-          <p class="muted">La méditation quotidienne reste accessible ici, séparée du propre de la messe placé désormais sur la page principale.</p>
-        </div>
-        <article class="card prose">
-          <p>La méditation complète du jour se trouve également sur la page « Aujourd’hui ». Cette rubrique sera progressivement dédiée à l’approfondissement thomiste.</p>
-        </article>
       </section>
 
       <section id="view-about" class="view" aria-labelledby="tab-about">
@@ -130,13 +128,13 @@
     </main>
 
     <nav class="bottom-nav" aria-label="Navigation principale">
-      <button id="tab-today" class="nav-btn active" data-view="today"><span>✠</span><small>Aujourd’hui</small></button>
-      <button id="tab-mass" class="nav-btn" data-view="mass"><span>✦</span><small>Méditation</small></button>
+      <button id="tab-today" class="nav-btn active" data-view="today"><span>✠</span><small>Textes du jour</small></button>
+      <button id="tab-mass" class="nav-btn" data-view="mass"><span>✦</span><small>Méditation quotidienne</small></button>
       <button id="tab-about" class="nav-btn" data-view="about"><span>ℹ</span><small>À propos</small></button>
     </nav>
   </div>
 
-  <script src="meditations.js?v=11"></script>
-  <script src="app.js?v=11"></script>
+  <script src="meditations.js?v=12"></script>
+  <script src="app.js?v=12"></script>
 </body>
 </html>
