@@ -319,3 +319,16 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   color:var(--muted);
 }
 .about-source-note strong { font-size:11px; color:var(--green); }
+
+/* v19 — taille uniforme du bloc Sources, droits et réutilisation */
+.about-card h3 + .about-source-note,
+.about-card h3 + .about-source-note ~ p,
+.about-card h3 + .about-source-note ~ p.small-note {
+  font-size:11px;
+  line-height:1.55;
+  color:var(--muted);
+}
+.about-card h3 + .about-source-note ~ p strong,
+.about-card h3 + .about-source-note strong {
+  font-size:11px;
+}
