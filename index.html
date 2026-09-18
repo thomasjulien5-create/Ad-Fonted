@@ -8,19 +8,14 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="stylesheet" href="styles.css?v=8" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-wrap">
-        <p class="eyebrow">Vetus Ordo · 1962</p>
-        <h1>Ad Fontes</h1>
-        <div id="liturgicalBanner" class="liturgical-banner" aria-live="polite">
-          <span class="liturgical-swatch" aria-hidden="true"></span>
-          <span id="liturgicalColorName">Couleur liturgique du jour</span>
-        </div>
+        <img class="brand-banner" src="assets/ad-fontes-banner.jpg" alt="Ad Fontes — Le bréviaire du laïc du XXIe siècle" />
       </div>
       <button id="installBtn" class="ghost hidden">Installer</button>
     </header>
@@ -38,7 +33,7 @@
 
         <article class="hero-card">
           <div class="ornament">✠</div>
-          <p class="kicker">Jour liturgique</p>
+          <p id="liturgicalColorName" class="kicker liturgical-color-kicker" aria-live="polite">Couleur liturgique</p>
           <h2 id="feastName">Chargement…</h2>
           <p id="feastMeta" class="muted"></p>
           <p id="commemoration" class="commemoration"></p>
@@ -134,7 +129,7 @@
     </nav>
   </div>
 
-  <script src="meditations.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="meditations.js?v=8"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>
