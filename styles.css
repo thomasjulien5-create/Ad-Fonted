@@ -357,3 +357,29 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
     line-height:1.55;
   }
 }
+
+/* v21 — identité Ad Fontes dans À propos */
+.about-brand {
+  margin:0 0 24px;
+  padding-bottom:16px;
+  border-bottom:1px solid rgba(169,135,69,.65);
+}
+.about-brand h2 {
+  margin:0;
+  font-size:38px;
+  line-height:1.1;
+  font-weight:600;
+  color:#172b3e;
+  letter-spacing:.01em;
+}
+.about-brand p {
+  margin:7px 0 0 !important;
+  font-size:21px !important;
+  line-height:1.35 !important;
+  font-style:italic;
+  color:#8b6426;
+}
+@media (max-width:420px){
+  .about-brand h2 { font-size:34px; }
+  .about-brand p { font-size:19px !important; }
+}
