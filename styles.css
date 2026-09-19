@@ -564,3 +564,50 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
 .exact-home-art { aspect-ratio:310/436 !important; background:#f8f0df; }
 .exact-home-art img { width:100%; height:100%; object-fit:cover; display:block; transform:none !important; filter:none !important; }
 #view-home .home-image-tile { background:#fffaf0; }
+
+/* v32 — reproduction stricte de l'écran de référence */
+#view-home { background:#fffaf0 !important; padding:40px 24px 32px !important; }
+#view-home .home-icon-grid {
+  display:grid !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:22px !important; max-width:960px !important; margin:0 auto !important;
+}
+#view-home .home-image-tile {
+  display:flex !important; flex-direction:column !important; padding:0 !important; overflow:hidden !important;
+  border:1px solid #e6cfaa !important; border-radius:22px !important; background:#fffaf0 !important;
+  box-shadow:0 7px 18px rgba(95,65,27,.13) !important;
+}
+#view-home .exact-home-art {
+  display:block !important; width:100% !important; aspect-ratio:307/433 !important; padding:0 !important;
+  overflow:hidden !important; border:0 !important; border-radius:20px 20px 0 0 !important;
+  background-size:cover !important; background-position:center !important; background-repeat:no-repeat !important;
+}
+#view-home .exact-bible { background-image:url('./assets/home-bible.webp?v=32') !important; }
+#view-home .exact-thomas { background-image:url('./assets/home-thomas.webp?v=32') !important; }
+#view-home .exact-about { background-image:url('./assets/home-about.webp?v=32') !important; }
+#view-home .exact-home-art img {
+  display:block !important; width:100% !important; height:100% !important; object-fit:cover !important;
+  opacity:1 !important; visibility:visible !important; transform:none !important; filter:none !important;
+}
+#view-home .home-tile-label { min-height:168px !important; padding:18px 8px 16px !important; }
+#view-home .home-image-tile .home-tile-label strong {
+  font-family:Georgia,'Times New Roman',serif !important; font-size:36px !important; line-height:.98 !important;
+  color:#071f3e !important; font-weight:600 !important;
+}
+#view-home .tile-ornament { margin-top:25px !important; color:#ad7416 !important; }
+#view-home .tile-ornament::before,#view-home .tile-ornament::after { width:43px !important; background:#ad7416 !important; }
+#view-home .home-quote { max-width:720px !important; margin:34px auto 6px !important; }
+#view-home .home-quote blockquote { font-size:31px !important; line-height:1.22 !important; color:#071f3e !important; }
+#view-home .home-quote figcaption { font-size:15px !important; color:#071f3e !important; }
+@media(max-width:600px){
+  #view-home { padding:20px 10px 24px !important; }
+  #view-home .home-icon-grid { gap:8px !important; }
+  #view-home .home-image-tile { border-radius:14px !important; }
+  #view-home .exact-home-art { border-radius:13px 13px 0 0 !important; }
+  #view-home .home-tile-label { min-height:108px !important; padding:11px 3px 10px !important; }
+  #view-home .home-image-tile .home-tile-label strong { font-size:20px !important; }
+  #view-home .tile-ornament { margin-top:15px !important; }
+  #view-home .tile-ornament::before,#view-home .tile-ornament::after { width:24px !important; }
+  #view-home .home-quote { margin-top:25px !important; padding:0 12px !important; }
+  #view-home .home-quote blockquote { font-size:20px !important; }
+  #view-home .home-quote figcaption { font-size:11px !important; }
+}
