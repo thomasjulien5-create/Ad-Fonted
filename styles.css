@@ -559,3 +559,8 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .approved-thomas img { transform:scale(1.23); }
   .about-logo-wordmark { font-size:22px; }
 }
+
+/* v31 — visuels exacts extraits de la maquette validée */
+.exact-home-art { aspect-ratio:310/436 !important; background:#f8f0df; }
+.exact-home-art img { width:100%; height:100%; object-fit:cover; display:block; transform:none !important; filter:none !important; }
+#view-home .home-image-tile { background:#fffaf0; }
