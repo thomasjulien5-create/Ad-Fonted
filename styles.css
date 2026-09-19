@@ -713,3 +713,47 @@ body:has(#view-home.active) .nav-btn small{font-size:clamp(12px,1.8vw,18px) !imp
 .bottom-nav .nav-book-symbol::after{right:1px;border-radius:1px 10px 1px 0;transform:skewY(-5deg);}
 .bottom-nav .nav-thomas-symbol{width:34px;height:34px;border:2px solid currentColor;border-radius:50%;font-size:21px!important;}
 .bottom-nav .nav-info-symbol{font-size:35px!important;}
+
+/* v36 — menu inférieur uniforme dans toutes les rubriques */
+.bottom-nav{
+  grid-template-columns:repeat(4,1fr)!important;
+  background:#fffaf0!important;
+  border-top:1px solid #e6d2b1!important;
+  padding:10px 8px max(10px,env(safe-area-inset-bottom))!important;
+}
+.bottom-nav .nav-btn{
+  min-width:0!important;
+  padding:5px 2px 3px!important;
+  color:#665a4e!important;
+  background:transparent!important;
+  border:0!important;
+  font-family:Georgia,'Times New Roman',serif!important;
+}
+.bottom-nav .nav-btn.active{color:#ad7416!important;}
+.bottom-nav .nav-btn small{
+  display:block!important;
+  font-family:Georgia,'Times New Roman',serif!important;
+  font-size:11px!important;
+  line-height:1.1!important;
+  white-space:nowrap!important;
+}
+.bottom-nav .nav-glyph{
+  width:40px!important;height:34px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0 auto 5px!important;color:currentColor!important;
+}
+.bottom-nav .nav-home-symbol{font-size:31px!important;}
+.bottom-nav .nav-book-symbol{width:40px!important;height:28px!important;font-size:0!important;position:relative!important;border-bottom:3px solid currentColor!important;}
+.bottom-nav .nav-book-symbol::before,.bottom-nav .nav-book-symbol::after{
+  content:""!important;position:absolute!important;top:0!important;width:18px!important;height:22px!important;
+  border:2px solid currentColor!important;border-bottom:0!important;background:#fffaf0!important;
+}
+.bottom-nav .nav-book-symbol::before{left:1px!important;border-radius:9px 1px 0 1px!important;transform:skewY(5deg)!important;}
+.bottom-nav .nav-book-symbol::after{right:1px!important;border-radius:1px 9px 1px 0!important;transform:skewY(-5deg)!important;}
+.bottom-nav .nav-thomas-symbol{width:31px!important;height:31px!important;border:2px solid currentColor!important;border-radius:50%!important;font-size:19px!important;}
+.bottom-nav .nav-info-symbol{font-size:31px!important;}
+@media(max-width:420px){
+ .bottom-nav{padding-left:4px!important;padding-right:4px!important;}
+ .bottom-nav .nav-btn small{font-size:9.5px!important;}
+ .bottom-nav .nav-glyph{transform:scale(.92);}
+}
