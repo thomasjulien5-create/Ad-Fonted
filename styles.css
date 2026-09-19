@@ -611,3 +611,76 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   #view-home .home-quote blockquote { font-size:20px !important; }
   #view-home .home-quote figcaption { font-size:11px !important; }
 }
+
+
+/* v33 — accueil fidèle aux proportions de la maquette de référence */
+body:has(#view-home.active) .topbar{
+  position:relative !important; top:auto !important; padding:0 !important;
+  background:#fffaf0 !important; border:0 !important; backdrop-filter:none !important;
+}
+body:has(#view-home.active) .brand-wrap{width:100% !important;}
+body:has(#view-home.active) .brand-banner{
+  width:100% !important; max-width:none !important; border-radius:0 !important;
+  box-shadow:none !important; display:block !important;
+}
+body:has(#view-home.active) main{
+  max-width:none !important; width:100% !important; padding:0 !important; margin:0 !important;
+  background:#fffaf0 !important;
+}
+#view-home{
+  width:100% !important; padding:42px 34px 34px !important; background:#fffaf0 !important;
+}
+#view-home .home-icon-grid{
+  width:100% !important; max-width:1000px !important; margin:0 auto !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important; gap:22px !important;
+}
+#view-home .home-image-tile{
+  min-width:0 !important; border-radius:23px !important; border:1.5px solid #e8d0a8 !important;
+  box-shadow:0 8px 20px rgba(111,75,27,.13) !important; background:#fffaf0 !important;
+}
+#view-home .exact-home-art{
+  width:100% !important; aspect-ratio:307/433 !important; border-radius:21px 21px 0 0 !important;
+}
+#view-home .exact-home-art img{
+  width:100% !important; height:100% !important; object-fit:cover !important;
+  object-position:center center !important;
+}
+#view-home .home-tile-label{
+  min-height:166px !important; padding:18px 6px 17px !important;
+  display:flex !important; flex-direction:column !important; align-items:center !important;
+}
+#view-home .home-image-tile .home-tile-label strong{
+  font-size:clamp(24px,3.55vw,39px) !important; line-height:.98 !important;
+  font-weight:600 !important; letter-spacing:-.025em !important; color:#082342 !important;
+}
+#view-home .tile-ornament{margin-top:24px !important; font-size:13px !important;}
+#view-home .tile-ornament::before,#view-home .tile-ornament::after{width:42px !important;}
+#view-home .home-quote{max-width:760px !important; margin:34px auto 20px !important; padding:0 18px !important;}
+#view-home .home-quote blockquote{
+  font-size:clamp(24px,3.2vw,34px) !important; line-height:1.22 !important;
+  font-style:italic !important; color:#082342 !important;
+}
+#view-home .home-quote figcaption{
+  margin-top:14px !important; font-size:clamp(13px,1.65vw,18px) !important;
+  line-height:1.5 !important; color:#082342 !important; letter-spacing:.06em !important;
+}
+#view-home .home-quote figcaption::before{content:"◆" !important; color:#b27b18 !important; margin-bottom:10px !important;}
+body:has(#view-home.active) .bottom-nav{
+  background:#fffaf0 !important; border-top:1px solid #e6d2b1 !important;
+  padding-top:13px !important; padding-bottom:max(12px,env(safe-area-inset-bottom)) !important;
+}
+body:has(#view-home.active) .nav-btn .nav-glyph{font-size:32px !important; margin-bottom:6px !important;}
+body:has(#view-home.active) .nav-btn small{font-size:clamp(12px,1.8vw,18px) !important;}
+@media(max-width:600px){
+  #view-home{padding:34px 22px 28px !important;}
+  #view-home .home-icon-grid{gap:14px !important;}
+  #view-home .home-image-tile{border-radius:18px !important;}
+  #view-home .exact-home-art{border-radius:17px 17px 0 0 !important;}
+  #view-home .home-tile-label{min-height:126px !important;padding:15px 4px 13px !important;}
+  #view-home .home-image-tile .home-tile-label strong{font-size:clamp(20px,4.7vw,30px) !important;}
+  #view-home .tile-ornament{margin-top:18px !important;}
+  #view-home .tile-ornament::before,#view-home .tile-ornament::after{width:31px !important;}
+  #view-home .home-quote{margin-top:30px !important;}
+  #view-home .home-quote blockquote{font-size:clamp(22px,4.7vw,30px) !important;}
+  #view-home .home-quote figcaption{font-size:clamp(12px,2.7vw,16px) !important;}
+}
