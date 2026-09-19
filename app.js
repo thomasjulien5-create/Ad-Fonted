@@ -245,7 +245,8 @@ function switchView(name){
   $('.view').forEach(v=>v.classList.remove('active'));
   $('.nav-btn').forEach(b=>b.classList.remove('active'));
   const view=$(`#view-${name}`);
-  if(view) view.classList.add('active');
+  if(!view) return;
+  view.classList.add('active');
   const nav=$(`.nav-btn[data-view="${name}"]`);
   if(nav) nav.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
