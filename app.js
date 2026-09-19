@@ -242,23 +242,32 @@ function renderError(message){
   $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Le commentaire sourcé, lorsqu’il est archivé, reste disponible ci-dessous.</div>';
 }
 function switchView(name){
-  $('.view').forEach(v=>v.classList.remove('active'));
-  $('.nav-btn').forEach(b=>b.classList.remove('active'));
-  const view=$(`#view-${name}`);
+  const views=document.querySelectorAll('.view');
+  const navButtons=document.querySelectorAll('.nav-btn');
+  views.forEach(v=>v.classList.remove('active'));
+  navButtons.forEach(b=>b.classList.remove('active'));
+  const view=document.getElementById('view-'+name);
   if(!view) return;
   view.classList.add('active');
-  const nav=$(`.nav-btn[data-view="${name}"]`);
+  const nav=document.querySelector('.nav-btn[data-view="'+name+'"]');
   if(nav) nav.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
-$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
-$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
-$('[data-reading-target]').forEach(b=>b.addEventListener('click',()=>{
-  const key=b.dataset.readingTarget;
-  let target=document.getElementById(`reading-${key}`);
-  if(!target && key==='epistle') target=document.querySelector('[id^="reading-lesson"],#reading-reading');
-  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
-}));
+
+document.addEventListener('click',e=>{
+  const go=e.target.closest('[data-go]');
+  if(go){ e.preventDefault(); switchView(go.dataset.go); return; }
+  const nav=e.target.closest('.nav-btn[data-view]');
+  if(nav){ e.preventDefault(); switchView(nav.dataset.view); return; }
+  const reading=e.target.closest('[data-reading-target]');
+  if(reading){
+    e.preventDefault();
+    const key=reading.dataset.readingTarget;
+    let target=document.getElementById('reading-'+key);
+    if(!target && key==='epistle') target=document.querySelector('[id^="reading-lesson"],#reading-reading');
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+});
 $('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
 $('#datePicker').onchange=e=>{ const [y,m,d]=e.target.value.split('-').map(Number); selected=new Date(y,m-1,d,12); loadDay(); };
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#installBtn').classList.remove('hidden'); });
