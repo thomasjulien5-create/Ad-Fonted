@@ -684,39 +684,3 @@ body:has(#view-home.active) .nav-btn small{font-size:clamp(12px,1.8vw,18px) !imp
   #view-home .home-quote blockquote{font-size:clamp(22px,4.7vw,30px) !important;}
   #view-home .home-quote figcaption{font-size:clamp(12px,2.7vw,16px) !important;}
 }
-
-/* v34 — accueil validé : Bible, vignette bannière et menu symbolique */
-#view-home .exact-bible img{
-  object-fit:cover !important;
-  object-position:center !important;
-  filter:saturate(1.08) contrast(1.05) brightness(.94) !important;
-}
-#view-home .banner-about{
-  position:relative !important;
-  background-image:url('./assets/file_0000000000c082108ce827725e006074.png?v=34') !important;
-  background-size:cover !important;
-  background-position:center !important;
-}
-#view-home .banner-about::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to bottom,rgba(255,250,240,.04),rgba(255,250,240,.08));
-}
-#view-home .about-overlay{
-  position:absolute; z-index:2; inset:0;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
-  color:#082342; font-family:Georgia,'Times New Roman',serif;
-  font-size:clamp(24px,3.4vw,39px); text-shadow:0 1px 1px rgba(255,255,255,.8);
-}
-#view-home .about-overlay .about-cross{color:#b27b18;font-size:.8em;}
-.bottom-nav .nav-glyph{
-  width:42px; height:38px; margin:0 auto 6px !important;
-  display:flex !important; align-items:center; justify-content:center;
-  font-family:Georgia,'Times New Roman',serif;
-}
-.bottom-nav .nav-bible-icon{font-size:29px !important; filter:grayscale(1) sepia(.25);}
-.bottom-nav .nav-thomas-icon{
-  border:2px solid currentColor; border-radius:50%; width:31px; height:31px;
-  font-size:20px !important; line-height:1;
-}
-.bottom-nav .nav-about-icon{font-size:31px !important;}
-.bottom-nav .nav-home-icon{font-size:32px !important;}
