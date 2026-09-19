@@ -504,3 +504,40 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .about-logo-wordmark { font-size:21px; }
   .about-logo-ornament::before,.about-logo-ornament::after { width:24px; }
 }
+
+/* v29 — page d'accueil calée sur la maquette approuvée */
+#view-home { padding-top:24px; padding-bottom:24px; }
+#view-home .home-icon-grid { margin:0; gap:12px; }
+#view-home .home-image-tile { border-radius:20px; box-shadow:0 7px 18px rgba(95,65,27,.12); }
+#view-home .home-visual { aspect-ratio:3/4; }
+#view-home .home-tile-label { min-height:126px; padding:15px 5px 13px; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; }
+#view-home .home-image-tile .home-tile-label strong {
+  font-family:Georgia,'Times New Roman',serif; font-size:23px; line-height:1.02; font-weight:600; color:#102d4d;
+}
+.tile-ornament { position:relative; display:block; margin-top:18px; color:#b27b18; font-size:11px; line-height:1; }
+.tile-ornament::before,.tile-ornament::after { content:""; position:absolute; top:50%; width:31px; height:1px; background:#b27b18; }
+.tile-ornament::before { right:19px; } .tile-ornament::after { left:19px; }
+#view-home .home-quote { margin:31px auto 3px; padding:0 18px; }
+#view-home .home-quote blockquote {
+  font-family:Georgia,'Times New Roman',serif; font-size:22px; line-height:1.35; font-style:italic; color:#102d4d;
+}
+#view-home .home-quote figcaption { margin-top:14px; color:#102d4d; font-family:Georgia,'Times New Roman',serif; line-height:1.6; letter-spacing:.04em; }
+#view-home .home-quote figcaption::before { content:"◆"; display:block; margin:0 auto 8px; color:#b27b18; }
+.bottom-nav { background:#fffaf0; border-top:1px solid #e2d2b1; }
+.nav-btn { font-family:Georgia,'Times New Roman',serif; color:#655a50; }
+.nav-btn .nav-glyph { display:block; font-size:27px; line-height:1; margin-bottom:5px; }
+.nav-btn.active { color:#ad7416; }
+.nav-btn small { font-family:Georgia,'Times New Roman',serif; font-size:12px; }
+@media(max-width:520px){
+  #view-home { padding:18px 3px 20px; }
+  #view-home .home-icon-grid { gap:7px; }
+  #view-home .home-image-tile { border-radius:14px; }
+  #view-home .home-tile-label { min-height:94px; padding:11px 3px 9px; }
+  #view-home .home-image-tile .home-tile-label strong { font-size:16px; }
+  .tile-ornament { margin-top:13px; }
+  .tile-ornament::before,.tile-ornament::after { width:20px; }
+  #view-home .home-quote { margin-top:24px; }
+  #view-home .home-quote blockquote { font-size:18px; }
+  .nav-btn .nav-glyph { font-size:23px; }
+  .nav-btn small { font-size:10px; }
+}
