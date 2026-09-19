@@ -148,7 +148,7 @@ function readingCard(x,i,prefix){
   const french=hasCrampon?readingTextHtml(section.cramponText):readingTextHtml(x.text||'');
   const sourceLine=hasCrampon?cramponSourceLine(section):'<div class="reading-source provisional">Source : texte liturgique du jour · traduction française provisoire.</div>';
   const latin=x.source?.text?`<button class="latin-toggle" data-target="${prefix}-la-${i}">Afficher le latin</button><div id="${prefix}-la-${i}" class="latin liturgical-text">${stripUnsafe(x.source.text)}</div>`:'';
-  return `<article class="reading-card"><div class="ref">${x.ref||section?.ref||''}</div><h3>${x.label||section?.label||x.key}</h3><div class="liturgical-text">${french}</div>${sourceLine}${latin}</article>`;
+  return `<article class="reading-card" id="reading-${String(x.key||'reading').toLowerCase()}"><div class="ref">${x.ref||section?.ref||''}</div><h3>${x.label||section?.label||x.key}</h3><div class="liturgical-text">${french}</div>${sourceLine}${latin}</article>`;
 }
 function bindLatinToggles(){ $$('.latin-toggle').forEach(btn=>btn.onclick=()=>{ const target=document.getElementById(btn.dataset.target); target.classList.toggle('open'); btn.textContent=target.classList.contains('open')?'Masquer le latin':'Afficher le latin'; }); }
 
@@ -241,8 +241,23 @@ function renderError(message){
   setLiturgicalBanner('');
   $('#massReadings').innerHTML='<div class="error">Impossible de charger les textes liturgiques. Le commentaire sourcé, lorsqu’il est archivé, reste disponible ci-dessous.</div>';
 }
-function switchView(name){ $$('.view').forEach(v=>v.classList.remove('active')); $$('.nav-btn').forEach(b=>b.classList.remove('active')); $(`#view-${name}`).classList.add('active'); $(`.nav-btn[data-view="${name}"]`).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
-$$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view))); $$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
+function switchView(name){
+  $('.view').forEach(v=>v.classList.remove('active'));
+  $('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const view=$(`#view-${name}`);
+  if(view) view.classList.add('active');
+  const nav=$(`.nav-btn[data-view="${name}"]`);
+  if(nav) nav.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+$('.nav-btn').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+$('[data-go]').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.go)));
+$('[data-reading-target]').forEach(b=>b.addEventListener('click',()=>{
+  const key=b.dataset.readingTarget;
+  let target=document.getElementById(`reading-${key}`);
+  if(!target && key==='epistle') target=document.querySelector('[id^="reading-lesson"],#reading-reading');
+  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+}));
 $('#prevDay').onclick=()=>{ selected.setDate(selected.getDate()-1); loadDay(); }; $('#nextDay').onclick=()=>{ selected.setDate(selected.getDate()+1); loadDay(); };
 $('#datePicker').onchange=e=>{ const [y,m,d]=e.target.value.split('-').map(Number); selected=new Date(y,m-1,d,12); loadDay(); };
 window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; $('#installBtn').classList.remove('hidden'); });
