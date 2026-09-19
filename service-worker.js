@@ -1,4 +1,4 @@
-const CACHE='ad-fontes-v24';
+const CACHE='ad-fontes-v25';
 const STATIC=['./','./index.html','./installer/','./installer/index.html','./styles.css?v=24','./app.js?v=24','./meditations.js?v=24','./assets/file_0000000000c082108ce827725e006074.png?v=24','./manifest.webmanifest','./icon.svg'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(STATIC)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
