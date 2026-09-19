@@ -8,14 +8,14 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <link rel="stylesheet" href="styles.css?v=26" />
+  <link rel="stylesheet" href="styles.css?v=27" />
   <title>Ad Fontes — Méditation & Liturgie</title>
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
       <div class="brand-wrap">
-        <img class="brand-banner" src="assets/file_0000000000c082108ce827725e006074.png?v=26" alt="Ad Fontes — Le bréviaire du laïc du XXIe siècle" />
+        <img class="brand-banner" src="assets/file_0000000000c082108ce827725e006074.png?v=27" alt="Ad Fontes — Le bréviaire du laïc du XXIe siècle" />
       </div>
       <button id="installBtn" class="ghost hidden">Installer</button>
     </header>
@@ -26,23 +26,24 @@
           <p class="eyebrow">Ad Fontes · Retour aux sources</p>
           <h2>Que souhaitez-vous lire aujourd’hui&nbsp;?</h2>
         </div>
-        <div class="home-menu">
-          <button class="home-tile" data-go="today">
-            <span class="home-icon" aria-hidden="true">📖</span>
-            <span><strong>Textes du jour</strong><small>Épître et Évangile de la messe</small></span>
-            <span class="home-arrow" aria-hidden="true">›</span>
+        <div class="home-menu home-icon-grid">
+          <button class="home-tile home-image-tile" data-go="today">
+            <span class="home-visual bible-visual" aria-hidden="true"><span class="bible-book"><span class="bible-cross">✝</span><span class="bible-title">BIBLIA<br>SACRA</span></span></span>
+            <span class="home-tile-label"><strong>Textes du jour</strong><small>Épître et Évangile</small></span>
           </button>
-          <button class="home-tile" data-go="mass">
-            <span class="home-icon thomas-symbol" aria-hidden="true">✦</span>
-            <span><strong>Méditation quotidienne</strong><small>La Moelle de saint Thomas d’Aquin</small></span>
-            <span class="home-arrow" aria-hidden="true">›</span>
+          <button class="home-tile home-image-tile" data-go="mass">
+            <span class="home-visual"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/San%20tommaso%20d%27aquino%20con%20la%20summa%2C%20angelico%20san%20marco.jpg?width=420" alt="" loading="eager"></span>
+            <span class="home-tile-label"><strong>Méditation quotidienne</strong><small>La Moelle de saint Thomas d’Aquin</small></span>
           </button>
-          <button class="home-tile" data-go="about">
-            <span class="home-icon" aria-hidden="true">ℹ</span>
-            <span><strong>À propos</strong><small>Esprit, sources et démarche d’Ad Fontes</small></span>
-            <span class="home-arrow" aria-hidden="true">›</span>
+          <button class="home-tile home-image-tile" data-go="about">
+            <span class="home-visual"><img src="assets/file_0000000000c082108ce827725e006074.png?v=27" alt="" loading="eager"></span>
+            <span class="home-tile-label"><strong>À propos</strong><small>Esprit et sources d’Ad Fontes</small></span>
           </button>
         </div>
+        <figure class="home-quote">
+          <blockquote>« La grâce ne détruit pas la nature, mais la perfectionne. »</blockquote>
+          <figcaption>Saint Thomas d’Aquin · <cite>Somme théologique</cite>, I, q. 1, a. 8, ad 2</figcaption>
+        </figure>
       </section>
 
       <section id="view-today" class="view" aria-labelledby="textsHeading">
@@ -175,7 +176,7 @@
     </nav>
   </div>
 
-  <script src="meditations.js?v=26"></script>
-  <script src="app.js?v=26"></script>
+  <script src="meditations.js?v=27"></script>
+  <script src="app.js?v=27"></script>
 </body>
 </html>
