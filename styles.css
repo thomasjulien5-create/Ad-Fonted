@@ -757,3 +757,28 @@ body:has(#view-home.active) .nav-btn small{font-size:clamp(12px,1.8vw,18px) !imp
  .bottom-nav .nav-btn small{font-size:9.5px!important;}
  .bottom-nav .nav-glyph{transform:scale(.92);}
 }
+
+/* v37 — Bible sur autel + À propos sans décor de bannière */
+#view-home .altar-bible-photo{
+  background:#2b241d!important;
+  background-image:none!important;
+}
+#view-home .altar-bible-photo img{
+  display:block!important;width:100%!important;height:100%!important;
+  object-fit:cover!important;object-position:center center!important;
+  filter:brightness(.96) contrast(1.05) saturate(.92)!important;
+}
+#view-home .about-plain-card{
+  position:relative!important;
+  background:#f7f0e2!important;
+  background-image:none!important;
+}
+#view-home .about-plain-card::before{
+  content:"";position:absolute;inset:14%;border:1px solid rgba(178,123,24,.38);border-radius:50%;
+}
+#view-home .about-plain-card::after{
+  content:"";position:absolute;left:18%;right:18%;top:50%;height:1px;background:rgba(178,123,24,.38);
+}
+#view-home .about-plain-card .home-about-wordmark{
+  background:#f7f0e2!important;inset:34% 10%!important;z-index:3!important;
+}
