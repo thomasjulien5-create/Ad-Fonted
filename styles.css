@@ -541,3 +541,21 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .nav-btn .nav-glyph { font-size:23px; }
   .nav-btn small { font-size:10px; }
 }
+
+/* v30 — finitions de la maquette approuvée */
+#view-home { background:#fffaf0; }
+#view-home .home-icon-grid { max-width:760px; margin-left:auto; margin-right:auto; }
+.approved-bible { background:radial-gradient(circle at 82% 18%,#a87842 0 4%,#53341f 22%,#211511 66%,#120c0a 100%); }
+.approved-bible .bible-photo-book { width:86%; height:91%; transform:rotate(-5deg); }
+.bible-candle { position:absolute; right:12%; top:5%; width:8px; height:27%; border-radius:6px 6px 2px 2px; background:#e6d0a4; box-shadow:0 0 15px #e2a955; }
+.bible-candle::before { content:""; position:absolute; left:-2px; top:-12px; width:12px; height:16px; border-radius:50% 50% 45% 45%; background:#ffc95e; box-shadow:0 0 14px #ffb43d; }
+.bible-beads { position:absolute; z-index:3; left:7%; bottom:5%; color:#80684d; font-size:8px; letter-spacing:1px; transform:rotate(4deg); }
+.approved-thomas img { object-position:50% 10% !important; transform:scale(1.28); transform-origin:50% 18%; filter:saturate(.9) contrast(1.04); }
+.about-logo-card { background:linear-gradient(145deg,#fffdf9,#fbf2e3); }
+.about-logo-wordmark { color:#102d4d; font-size:34px; }
+#view-home .home-quote figcaption { text-transform:none; }
+#view-home .home-quote figcaption cite { font-style:italic; }
+@media(max-width:520px){
+  .approved-thomas img { transform:scale(1.23); }
+  .about-logo-wordmark { font-size:22px; }
+}
