@@ -466,3 +466,41 @@ blockquote { margin:18px 0; padding:16px 18px; border-left:3px solid var(--gold)
   .bible-title { font-size:9px; }
   .home-quote blockquote { font-size:18px; }
 }
+
+/* v28 — accueil final approuvé */
+.bible-photo {
+  position:relative; display:grid; place-items:center; overflow:hidden; padding:10%;
+  background:radial-gradient(circle at 78% 20%,#d2a45f 0 3%,#725035 18%,#2a1b16 62%,#17100e 100%);
+}
+.bible-photo::after {
+  content:""; position:absolute; right:13%; top:8%; width:8px; height:42%; border-radius:50%;
+  background:rgba(255,226,154,.75); filter:blur(5px); box-shadow:0 0 18px rgba(255,209,113,.75);
+}
+.bible-photo-book {
+  position:relative; z-index:1; width:83%; height:90%; transform:rotate(-5deg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+  color:#d7ae58; background:linear-gradient(105deg,#1b1412,#38231b 48%,#160f0e);
+  border:2px solid #b98c42; border-radius:5px 10px 10px 5px;
+  box-shadow:10px 12px 18px rgba(0,0,0,.45), inset 0 0 0 6px #241713;
+}
+.bible-photo-book::before { content:""; position:absolute; inset:9px; border:1px solid #a87b39; border-radius:3px 7px 7px 3px; }
+.bible-photo-cross { z-index:1; font-size:39px; line-height:1; }
+.bible-photo-title { z-index:1; font-size:12px; line-height:1.4; letter-spacing:.12em; font-weight:700; }
+.bible-rosary { position:absolute; z-index:2; right:10%; bottom:6%; color:#b8a386; font-size:19px; transform:rotate(16deg); }
+.thomas-home-portrait img { object-position:50% 8% !important; transform:scale(1.16); transform-origin:50% 20%; }
+.about-logo-card {
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:17px;
+  background:linear-gradient(145deg,#fffdf8,#f5ead7); color:#102d4d; padding:12px;
+}
+.about-logo-cross { color:#b27b18; font-size:38px; line-height:1; }
+.about-logo-wordmark { font-family:Georgia,'Times New Roman',serif; font-size:31px; line-height:1; white-space:nowrap; letter-spacing:-.035em; }
+.about-logo-ornament { color:#b27b18; font-size:13px; position:relative; }
+.about-logo-ornament::before,.about-logo-ornament::after { content:""; position:absolute; top:50%; width:38px; height:1px; background:#b27b18; }
+.about-logo-ornament::before { right:22px; } .about-logo-ornament::after { left:22px; }
+@media (max-width:520px){
+  .bible-photo-cross { font-size:29px; }
+  .bible-photo-title { font-size:9px; }
+  .about-logo-cross { font-size:27px; }
+  .about-logo-wordmark { font-size:21px; }
+  .about-logo-ornament::before,.about-logo-ornament::after { width:24px; }
+}
